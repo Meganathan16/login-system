@@ -615,7 +615,7 @@ opacity:1;
                     🏠 Dashboard
                 </a>
 
-                <a href="#" onclick="logout()">
+                <a href="#" onclick="event.preventDefault(); logout();">
                     🚪 Logout
                 </a>
 
@@ -902,9 +902,7 @@ function closeLogoutPopup(){
 
 function confirmLogout(){
 
-    localStorage.removeItem("isLoggedIn");
-
-    localStorage.removeItem("userEmail");
+    localStorage.clear();
 
     window.location.replace("index.html");
 
