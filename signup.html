@@ -913,7 +913,11 @@ document.getElementById("signup-form-element").addEventListener("submit", async 
 
         });
 
-        const data=await res.json();
+        if (!res.ok) {
+    throw new Error("Server error");
+}
+
+const data = await res.json();
 
         if(res.ok){
 
@@ -996,7 +1000,11 @@ document.getElementById("signup-otp-form-element").addEventListener("submit", as
 
         });
 
-        const data=await res.json();
+        if (!res.ok) {
+    throw new Error("Server error");
+}
+
+const data = await res.json();
 
         if(res.ok){
 
@@ -1065,7 +1073,11 @@ document.getElementById("resend-signup-otp").addEventListener("click", async (e)
 
         });
 
-        const data=await res.json();
+        if (!res.ok) {
+    throw new Error("Server error");
+}
+
+const data = await res.json();
 
         if(res.ok){
 
@@ -1152,7 +1164,11 @@ document.getElementById("login-form-element").addEventListener("submit", async (
 
         });
 
-        const data = await res.json();
+        if (!res.ok) {
+    throw new Error("Server error");
+}
+
+const data = await res.json();
 
         if(res.ok){
 
@@ -1237,7 +1253,11 @@ document.getElementById("login-otp-form-element").addEventListener("submit", asy
 
         });
 
-        const data = await res.json();
+        if (!res.ok) {
+    throw new Error("Server error");
+}
+
+const data = await res.json();
 
         if(res.ok){
 
@@ -1265,8 +1285,9 @@ document.getElementById("login-otp-form-element").addEventListener("submit", asy
 
                 // Redirect
                 localStorage.setItem("isLoggedIn","true");
-
 localStorage.setItem("userEmail",currentLoginEmail);
+
+currentLoginEmail="";
 
 window.location.replace("index.html");
 
@@ -1317,7 +1338,11 @@ document.getElementById("resend-login-otp").addEventListener("click", async (e)=
 
         });
 
-        const data = await res.json();
+        if (!res.ok) {
+    throw new Error("Server error");
+}
+
+const data = await res.json();
 
         if(res.ok){
 
