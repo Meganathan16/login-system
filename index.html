@@ -729,7 +729,7 @@ window.addEventListener("pageshow", function (event) {
 
         if(localStorage.getItem("isLoggedIn")!=="true"){
 
-            window.location.replace("index.html");
+            window.location.replace("signup.html");
 
         }
 
@@ -861,7 +861,7 @@ setTimeout(()=>{
 
 function goLogin(){
 
-    window.location.href="index.html";
+    window.location.href="signup.html";
 
 }
 
@@ -906,7 +906,7 @@ function confirmLogout(){
 
     localStorage.removeItem("userEmail");
 
-    window.location.replace("welcome.html");
+    window.location.replace("index.html");
 
 }
 
