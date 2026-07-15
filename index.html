@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard</title>
+
+<link href="style.css" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    background:linear-gradient(
+    -45deg,
+    #4facfe,
+    #00f2fe,
+    #43e97b,
+    #38f9d7);
+
+    background-size:400% 400%;
+
+    animation:bg 10s ease infinite;
+
+}
+
+@keyframes bg{
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
+}
+
+/* ===========================
+   TOP NAVBAR
+=========================== */
+
+.topbar{
+
+position:absolute;
+
+top:20px;
+left:30px;
+right:30px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+z-index:100;
+
+}
+
+.logo{
+
+font-size:28px;
+font-weight:700;
+color:white;
+
+letter-spacing:1px;
+
+text-shadow:0 5px 15px rgba(0,0,0,.25);
+
+}
+
+.nav-right{
+
+display:flex;
+align-items:center;
+gap:20px;
+
+}
+
+/* Login Button */
+
+#loginBtn{
+
+padding:12px 28px;
+
+border:none;
+outline:none;
+
+border-radius:30px;
+
+cursor:pointer;
+
+font-size:16px;
+font-weight:600;
+
+background:white;
+
+color:#007bff;
+
+transition:.3s;
+
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+
+}
+
+#loginBtn:hover{
+
+transform:translateY(-2px);
+
+background:#007bff;
+color:white;
+
+}
+
+/* ===========================
+   ACCOUNT
+=========================== */
+
+.account{
+
+position:relative;
+
+display:none;
+
+cursor:pointer;
+
+}
+
+.account-icon{
+
+width:55px;
+height:55px;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:rgba(255,255,255,.18);
+
+backdrop-filter:blur(15px);
+
+font-size:30px;
+
+color:white;
+
+border:1px solid rgba(255,255,255,.25);
+
+transition:.3s;
+
+}
+
+.account-icon:hover{
+
+transform:scale(1.08);
+
+}
+
+/* Dropdown */
+
+.dropdown{
+
+position:absolute;
+
+top:70px;
+right:0;
+
+width:230px;
+
+background:white;
+
+border-radius:15px;
+
+overflow:hidden;
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+display:none;
+
+z-index:1000;
+
+}
+
+.dropdown.show{
+
+display:block;
+
+animation:fade .25s ease;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(-10px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+.dropdown-header{
+
+padding:15px;
+
+background:#007bff;
+
+color:white;
+
+font-size:14px;
+
+font-weight:600;
+
+word-break:break-all;
+
+}
+
+.dropdown a{
+
+display:block;
+
+padding:15px;
+
+text-decoration:none;
+
+color:#333;
+
+font-weight:500;
+
+transition:.3s;
+
+}
+
+.dropdown a:hover{
+
+background:#f3f3f3;
+
+}
+
+/* ===========================
+   WELCOME CARD
+=========================== */
+
+.card{
+
+width:520px;
+max-width:92%;
+
+padding:45px;
+
+border-radius:25px;
+
+background:rgba(255,255,255,.18);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.2);
+
+text-align:center;
+
+color:white;
+
+box-shadow:0 15px 40px rgba(0,0,0,.30);
+
+}
+
+.icon{
+
+font-size:85px;
+
+animation:pop 1s ease;
+
+}
+
+@keyframes pop{
+
+0%{
+
+transform:scale(0);
+
+}
+
+80%{
+
+transform:scale(1.2);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+.card h1{
+
+margin-top:20px;
+
+font-size:42px;
+
+font-weight:700;
+
+}
+
+.card p{
+
+margin:22px 0;
+
+font-size:18px;
+
+line-height:1.8;
+
+}
+
+#dashboardBtn{
+
+padding:15px 38px;
+
+border:none;
+
+border-radius:35px;
+
+background:white;
+
+color:#007bff;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+#dashboardBtn:hover{
+
+transform:scale(1.06);
+
+background:#007bff;
+
+color:white;
+
+}
+
+.footer{
+
+margin-top:28px;
+
+font-size:14px;
+
+opacity:.85;
+
+}
+
+@media(max-width:700px){
+
+.logo{
+
+font-size:22px;
+
+}
+
+#loginBtn{
+
+padding:10px 18px;
+
+font-size:14px;
+
+}
+
+.account-icon{
+
+width:48px;
+height:48px;
+
+font-size:26px;
+
+}
+
+.card{
+
+padding:30px;
+
+}
+
+.card h1{
+
+font-size:34px;
+
+}
+
+.card p{
+
+font-size:16px;
+
+}
+
+}
+
+/* Logout Popup */
+
+.popup-overlay{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.45);
+
+backdrop-filter:blur(6px);
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+z-index:99999;
+
+}
+
+.popup-overlay.show{
+
+display:flex;
+
+animation:fadeIn .3s;
+
+}
+
+.popup-box{
+
+width:360px;
+
+padding:30px;
+
+border-radius:20px;
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(25px);
+
+border:1px solid rgba(255,255,255,.2);
+
+box-shadow:0 20px 50px rgba(0,0,0,.3);
+
+text-align:center;
+
+color:white;
+
+}
+
+.popup-icon{
+
+font-size:60px;
+
+margin-bottom:15px;
+
+}
+
+.popup-box h2{
+
+margin-bottom:12px;
+
+}
+
+.popup-box p{
+
+margin-bottom:25px;
+
+line-height:1.6;
+
+}
+
+.popup-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+}
+
+.cancel-btn{
+
+padding:12px 30px;
+
+border:none;
+
+border-radius:30px;
+
+background:#9ca3af;
+
+color:white;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+.logout-btn{
+
+padding:12px 30px;
+
+border:none;
+
+border-radius:30px;
+
+background:#ef4444;
+
+color:white;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+.cancel-btn:hover,
+.logout-btn:hover{
+
+transform:scale(1.05);
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ===========================
+     TOP NAVIGATION BAR
+=========================== -->
+
+<div class="topbar">
+
+    <div class="logo">
+        My Website
+    </div>
+
+    <div class="nav-right">
+
+        <!-- Login Button -->
+        <button id="loginBtn" onclick="goLogin()">
+            Login
+        </button>
+
+        <!-- Account Menu -->
+        <div class="account" id="accountMenu">
+
+            <div class="account-icon">
+                👤
+            </div>
+
+            <div class="dropdown">
+
+                <div class="dropdown-header" id="userEmail">
+                    user@example.com
+                </div>
+
+                <a href="#" onclick="goDashboard()">
+                    🏠 Dashboard
+                </a>
+
+                <a href="#" onclick="logout()">
+                    🚪 Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===========================
+     WELCOME CARD
+=========================== -->
+
+<div class="card">
+
+    <div class="icon">
+        🎉
+    </div>
+
+    <h1>
+        Welcome!
+    </h1>
+
+    <p>
+
+        Your login was successful.
+
+        <br><br>
+
+        Welcome to our website.
+
+        We're happy to have you here.
+
+    </p>
+
+    <button
+        id="dashboardBtn"
+        onclick="goDashboard()">
+
+        Go to Dashboard
+
+    </button>
+
+    <div class="footer">
+
+        © 2026 All Rights Reserved
+
+    </div>
+
+</div>
+
+
+<!-- Logout Confirmation Popup -->
+
+<div id="logoutPopup" class="popup-overlay">
+
+    <div class="popup-box">
+
+        <div class="popup-icon">
+            🚪
+        </div>
+
+        <h2>Logout</h2>
+
+        <p>
+            Are you sure you want to logout?
+        </p>
+
+        <div class="popup-buttons">
+
+            <button
+            class="cancel-btn"
+            onclick="closeLogoutPopup()">
+
+                Cancel
+
+            </button>
+
+            <button
+            class="logout-btn"
+            onclick="confirmLogout()">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+// ===========================================
+// PREVENT BACK BUTTON CACHE
+// ===========================================
+
+history.replaceState(null, "", location.href);
+
+window.addEventListener("pageshow", function (event) {
+
+    if (
+        event.persisted ||
+        performance.getEntriesByType("navigation")[0]?.type === "back_forward"
+    ) {
+
+        if(localStorage.getItem("isLoggedIn")!=="true"){
+
+            window.location.replace("index.html");
+
+        }
+
+    }
+
+});
+
+
+// ===========================================
+// CHECK LOGIN STATUS
+// ===========================================
+
+checkLogin();
+
+function checkLogin(){
+
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    const email = localStorage.getItem("userEmail");
+
+    const loginBtn = document.getElementById("loginBtn");
+
+    const accountMenu = document.getElementById("accountMenu");
+
+    const userEmail = document.getElementById("userEmail");
+
+    if(isLoggedIn==="true"){
+
+        loginBtn.style.display="none";
+
+        accountMenu.style.display="block";
+
+        userEmail.innerHTML=email || "User";
+
+    }else{
+
+        loginBtn.style.display="block";
+
+        accountMenu.style.display="none";
+
+    }
+
+}
+
+
+const accountMenu=document.getElementById("accountMenu");
+
+const dropdown=document.querySelector(".dropdown");
+
+accountMenu.addEventListener("click",(e)=>{
+
+    e.stopPropagation();
+
+    dropdown.classList.toggle("show");
+
+});
+
+document.addEventListener("click",()=>{
+
+    dropdown.classList.remove("show");
+
+});
+
+
+// ===============================
+// POPUP FUNCTION (ADD HERE)
+// ===============================
+
+function showPopup(message,type="success"){
+
+const old=document.getElementById("popup");
+
+if(old) old.remove();
+
+const popup=document.createElement("div");
+
+popup.id="popup";
+
+popup.innerHTML=`
+
+<div style="display:flex;align-items:center;gap:12px;">
+
+<span style="font-size:24px;">
+${type==="success"?"✅":"❌"}
+</span>
+
+<span>${message}</span>
+
+</div>
+
+`;
+
+popup.style.position="fixed";
+popup.style.top="25px";
+popup.style.left="50%";
+popup.style.transform="translateX(-50%)";
+
+popup.style.background=
+type==="success"
+?"#16a34a"
+:"#dc2626";
+
+popup.style.color="white";
+popup.style.padding="16px 28px";
+popup.style.borderRadius="12px";
+popup.style.fontWeight="bold";
+popup.style.boxShadow="0 15px 35px rgba(0,0,0,.3)";
+popup.style.zIndex="99999";
+popup.style.opacity="0";
+popup.style.transition=".35s";
+
+document.body.appendChild(popup);
+
+requestAnimationFrame(()=>{
+    popup.style.opacity="1";
+});
+
+setTimeout(()=>{
+    popup.style.opacity="0";
+    setTimeout(()=>popup.remove(),300);
+},2500);
+
+}
+
+
+// ===========================================
+// LOGIN BUTTON
+// ===========================================
+
+function goLogin(){
+
+    window.location.href="index.html";
+
+}
+
+
+// ===========================================
+// DASHBOARD BUTTON
+// ===========================================
+
+function goDashboard(){
+
+     showPopup("Welcome to Dashboard!");
+
+    // Change later
+    // window.location.href="dashboard.html";
+
+}
+
+
+// ===========================================
+// LOGOUT
+// ===========================================
+
+function logout(){
+
+    document
+    .getElementById("logoutPopup")
+    .classList.add("show");
+
+}
+
+function closeLogoutPopup(){
+
+    document
+    .getElementById("logoutPopup")
+    .classList.remove("show");
+
+}
+
+function confirmLogout(){
+
+    localStorage.removeItem("isLoggedIn");
+
+    localStorage.removeItem("userEmail");
+
+    window.location.replace("welcome.html");
+
+}
+
+</script>
+
+</body>
+</html>
