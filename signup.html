@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signup/Login with OTP & Strong Password</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f3f3f3;
+}
+.container{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:80px;
+width:100%;
+max-width:1100px;
+}
+h2 { text-align: center; margin-bottom: 20px; }
+.form-group { margin-bottom: 15px; position: relative; }
+.form-group label { display: block; margin-bottom: 5px; }
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 65%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.2em;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover { background: #0056b3; }
+.toggle {
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #007BFF;
+}
+.hidden { display: none; }
+
+:root {
+  --bg-color: #121417;
+  --lamp-matte: #e8e2d9;
+  --lamp-shade: #f5f0e6;
+  --lamp-base: #d1ccc2;
+  --glow-color: rgba(255,214,110,0.3);
+  --accent-color: #d4a373;
+  --on: 0;
+  --transition: 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+body{
+min-height:100vh;
+display:grid;
+place-items:center;
+background:var(--bg-color);
+font-family:Arial,Helvetica,sans-serif;
+overflow:hidden;
+transition:background var(--transition);
+}
+body::before{
+content:"";
+position:absolute;
+inset:0;
+background:radial-gradient(circle at 50% 40%,var(--glow-color),transparent 70%);
+opacity:var(--on);
+transition:opacity var(--transition);
+pointer-events:none;
+}
+
+/* Lamp */
+
+.lamp-wrapper{
+width:280px;
+height:400px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.lamp-svg{
+width:100%;
+height:100%;
+overflow:visible;
+}
+
+.lamp-shade{
+fill:var(--lamp-shade);
+transition:.5s;
+}
+
+[data-on="true"] .lamp-shade{
+fill:#fff;
+filter:drop-shadow(0 0 30px rgba(255,255,200,.5));
+}
+
+.lamp-base{
+fill:var(--lamp-base);
+}
+
+.inner-glow{
+fill:#ffd55a;
+opacity:0;
+filter:blur(18px);
+transition:.5s;
+}
+
+[data-on="true"] .inner-glow{
+opacity:.6;
+}
+
+.cord-line{
+stroke:#666;
+stroke-width:2;
+}
+
+.cord-bead{
+fill:#c78c48;
+}
+
+.cord-hit{
+cursor:pointer;
+}
+
+.welcome-screen{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    background:transparent;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    border:none;
+    box-shadow:none;
+    padding:20px;
+}
+
+.welcome-icon{
+font-size:70px;
+margin-bottom:20px;
+filter:drop-shadow(0 0 15px rgba(255,215,90,.8));
+animation:floatLamp 2s ease-in-out infinite;
+}
+
+.welcome-screen h1{
+font-size:34px;
+font-weight:600;
+margin-bottom:10px;
+color:#ffffff;
+}
+
+.welcome-screen h3{
+font-size:24px;
+margin-bottom:18px;
+color:#FFD54F;
+}
+
+.welcome-screen p{
+font-size:16px;
+line-height:1.8;
+max-width:280px;
+color:rgba(255,255,255,.85);
+}
+
+.arrow{
+margin-top:35px;
+font-size:20px;
+font-weight:bold;
+color:#FFD54F;
+animation:arrowMove 1s infinite alternate;
+}
+
+@keyframes floatLamp{
+
+0%,100%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+}
+
+@keyframes arrowMove{
+
+from{
+
+transform:translateX(0);
+
+}
+
+to{
+
+transform:translateX(-12px);
+
+}
+
+}
+
+.forms-container{
+    display:none;
+    width:100%;
+}
+
+#login-form,
+#signup-form,
+#signup-otp-form,
+#login-otp-form{
+    width:100%;
+}
+
+.form-group input{
+    width:100%;
+    padding:14px 18px;
+    box-sizing:border-box;
+}
+
+.auth-panel{
+    width:420px;
+    min-height:350px;
+    padding:35px;
+    border-radius:25px;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+    transition:.5s;
+    overflow:hidden;
+}
+</style>
+</head>
+<body data-on="false">
+
+<div class="container">
+
+<div class="lamp-wrapper">
+
+<svg class="lamp-svg" viewBox="0 0 200 300">
+
+<ellipse class="inner-glow"
+cx="100"
+cy="110"
+rx="60"
+ry="30"/>
+
+<rect
+class="lamp-base"
+x="92"
+y="100"
+width="16"
+height="160"
+rx="8"/>
+
+<rect
+class="lamp-base"
+x="60"
+y="250"
+width="80"
+height="12"
+rx="6"/>
+
+<g class="pull-cord">
+
+<line
+class="cord-line"
+x1="130"
+y1="110"
+x2="130"
+y2="180"/>
+
+<circle
+class="cord-bead"
+cx="130"
+cy="190"
+r="6"/>
+
+<circle
+class="cord-hit"
+cx="130"
+cy="190"
+r="25"
+fill="transparent"/>
+
+</g>
+
+<path
+class="lamp-shade"
+d="M30 110 C30 50 170 50 170 110 C170 125 30 125 30 110 Z"/>
+
+</svg>
+
+</div>
+
+<div class="auth-panel">
+	<div class="welcome-screen">
+    <div class="welcome-icon">💡</div>
+    <h1>Welcome</h1>
+    <h3>Pull the Lamp Cord</h3>
+    <p>
+        To Turn on the lamp to unlock your
+        secure Login & Signup Portal.
+    </p>
+    <div class="arrow">
+        ← Pull the cord to begin
+    </div>
+
+</div>
+    
+<div class="forms-container">
+<!-- Signup Form -->
+<div id="signup-form" class="hidden">
+    <h2>Signup</h2>
+    <form id="signup-form-element">
+        <div class="form-group">
+            <label for="signup-name">Name</label>
+            <input type="text" id="signup-name" required>
+        </div>
+        <div class="form-group">
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" required>
+        </div>
+        <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" required>
+            <span class="toggle-password" id="signup-toggle-password">👁</span>
+        </div>
+        <button type="submit">Signup</button>
+    </form>
+    <div class="toggle" id="show-login">Already have an account? Login</div>
+</div>
+
+<!-- Signup OTP Form -->
+<div id="signup-otp-form" class="hidden">
+    <h2>Verify Signup OTP</h2>
+    <form id="signup-otp-form-element">
+        <div class="form-group">
+            <label for="signup-otp">Enter OTP</label>
+            <input type="text" id="signup-otp" required>
+        </div>
+        <button type="submit">Verify OTP</button>
+		<button type="button" id="resend-signup-otp" style="margin-top:10px;background:#28a745;">
+    Resend OTP
+</button>
+    </form>
+</div>
+
+<!-- Login Form -->
+<div id="login-form">
+    <h2>Login</h2>
+    <form id="login-form-element">
+        <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" required>
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" required>
+            <span class="toggle-password" id="login-toggle-password">👁</span>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <div class="toggle" id="show-signup">Don't have an account? Signup</div>
+</div>
+
+<!-- Login OTP Form -->
+<div id="login-otp-form" class="hidden">
+    <h2>Verify Login OTP</h2>
+    <form id="login-otp-form-element">
+        <div class="form-group">
+            <label for="login-otp">Enter OTP</label>
+            <input type="text" id="login-otp" required>
+        </div>
+        <button type="submit">Verify OTP</button>
+		<button type="button" id="resend-login-otp" style="margin-top:10px;background:#28a745;">
+    Resend OTP
+</button>
+    </form>
+</div>
+</div>
+</div>
+
+</div>
+
+<script src="gsap.min.js"></script>
+<script src="Draggable.min.js"></script>
+
+<script>
+
+
+gsap.registerPlugin(Draggable);
+
+const root=document.documentElement;
+const body=document.body;
+
+const authPanel =
+document.querySelector(".auth-panel");
+
+const cordBead=document.querySelector(".cord-bead");
+const cordLine=document.querySelector(".cord-line");
+const hitArea=document.querySelector(".cord-hit");
+
+let isOn=false;
+
+// Optional click sound
+const clickSound=new Audio("click.mp3");
+
+Draggable.create(hitArea,{
+
+type:"y",
+
+bounds:{
+minY:0,
+maxY:60
+},
+
+onDrag(){
+
+gsap.set(cordBead,{
+y:this.y
+});
+
+gsap.set(cordLine,{
+attr:{
+y2:180+this.y
+}
+});
+
+},
+
+onRelease(){
+
+if(this.y>30){
+toggleLamp();
+}
+
+gsap.to([cordBead,hitArea],{
+y:0,
+duration:.5,
+ease:"back.out(2.5)"
+});
+
+gsap.to(cordLine,{
+attr:{
+y2:180
+},
+duration:.5,
+ease:"back.out(2.5)"
+});
+
+}
+
+});
+
+function toggleLamp(){
+
+isOn=!isOn;
+
+clickSound.play().catch(()=>{});
+
+body.setAttribute("data-on",isOn);
+
+root.style.setProperty("--on",isOn?1:0);
+
+if(isOn){
+
+document.querySelector(".welcome-screen").style.display="none";
+document.querySelector(".forms-container").style.display="block";
+
+gsap.to(body,{
+backgroundColor:"#1c1f24",
+duration:.6
+});
+
+}
+else{
+
+document.querySelector(".welcome-screen").style.display="flex";
+document.querySelector(".forms-container").style.display="none";
+
+gsap.to(body,{
+backgroundColor:"#121417",
+duration:.6
+});
+
+}
+
+}
+
+history.replaceState(null, "", location.href);
+
+window.addEventListener("pageshow", function (event) {
+
+    if (event.persisted ||
+        performance.getEntriesByType("navigation")[0]?.type === "back_forward") {
+
+        document.getElementById("login-form-element").reset();
+        document.getElementById("login-otp-form-element").reset();
+        document.getElementById("signup-form-element").reset();
+        document.getElementById("signup-otp-form-element").reset();
+
+        currentSignupEmail = "";
+        currentLoginEmail = "";
+
+    }
+
+});
+
+const signupForm = document.getElementById("signup-form");
+const signupOtpForm = document.getElementById("signup-otp-form");
+
+const loginForm = document.getElementById("login-form");
+const loginOtpForm = document.getElementById("login-otp-form");
+
+const showLogin = document.getElementById("show-login");
+const showSignup = document.getElementById("show-signup");
+
+const signupTogglePassword =
+document.getElementById("signup-toggle-password");
+
+const loginTogglePassword =
+document.getElementById("login-toggle-password");
+
+let currentSignupEmail = "";
+let currentLoginEmail = "";
+
+let signupTimer = null;
+let loginTimer = null;
+
+function showPopup(message,type="success"){
+
+const old=document.getElementById("popup");
+
+if(old) old.remove();
+
+const popup=document.createElement("div");
+
+popup.id="popup";
+
+popup.innerHTML=`
+<div style="
+display:flex;
+align-items:center;
+gap:12px;
+">
+
+<span style="font-size:24px;">
+${type==="success"?"✅":"❌"}
+</span>
+
+<span>${message}</span>
+
+</div>
+`;
+
+popup.style.position="fixed";
+popup.style.top="25px";
+popup.style.left="50%";
+popup.style.transform="translateX(-50%)";
+
+popup.style.background=
+type==="success"
+?"#16a34a"
+:"#dc2626";
+
+popup.style.color="white";
+popup.style.padding="15px 25px";
+popup.style.borderRadius="10px";
+popup.style.fontWeight="bold";
+popup.style.fontSize="16px";
+
+popup.style.boxShadow=
+"0 10px 25px rgba(0,0,0,.25)";
+
+popup.style.zIndex="99999";
+
+popup.style.opacity="0";
+popup.style.transition=".35s";
+
+document.body.appendChild(popup);
+
+requestAnimationFrame(()=>{
+
+popup.style.opacity="1";
+
+});
+
+setTimeout(()=>{
+
+popup.style.opacity="0";
+
+setTimeout(()=>{
+
+popup.remove();
+
+},350);
+
+},2200);
+
+}
+
+function setLoading(button,loading,text){
+
+if(loading){
+
+button.disabled=true;
+
+button.dataset.oldText=button.innerHTML;
+
+button.innerHTML="⏳ "+text;
+
+button.style.opacity=".7";
+
+button.style.cursor="not-allowed";
+
+}else{
+
+button.disabled=false;
+
+button.innerHTML=button.dataset.oldText;
+
+button.style.opacity="1";
+
+button.style.cursor="pointer";
+
+}
+
+}
+
+function startResendTimer(buttonId){
+
+let seconds=60;
+
+const btn=document.getElementById(buttonId);
+
+btn.disabled=true;
+
+btn.innerHTML=`Resend OTP (${seconds}s)`;
+
+const timer=setInterval(()=>{
+
+seconds--;
+
+btn.innerHTML=`Resend OTP (${seconds}s)`;
+
+if(seconds<=0){
+
+clearInterval(timer);
+
+btn.disabled=false;
+
+btn.innerHTML="Resend OTP";
+
+}
+
+},1000);
+
+return timer;
+
+}
+
+function togglePasswordVisibility(input,icon){
+
+if(input.type==="password"){
+
+input.type="text";
+
+icon.textContent="🙈";
+
+}else{
+
+input.type="password";
+
+icon.textContent="👁";
+
+}
+
+}
+
+// =========================================
+// VALIDATIONS
+// =========================================
+
+function isStrongPassword(password){
+
+    return /^(?=.*[A-Z])(?=.*\d).{8,}$/.test(password);
+
+}
+
+function isValidEmail(email){
+
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+}
+
+
+// =========================================
+// PASSWORD SHOW / HIDE
+// =========================================
+
+signupTogglePassword.addEventListener("click",()=>{
+
+    togglePasswordVisibility(
+        document.getElementById("signup-password"),
+        signupTogglePassword
+    );
+
+});
+
+loginTogglePassword.addEventListener("click",()=>{
+
+    togglePasswordVisibility(
+        document.getElementById("login-password"),
+        loginTogglePassword
+    );
+
+});
+
+
+// =========================================
+// SWITCH LOGIN & SIGNUP
+// =========================================
+
+showLogin.addEventListener("click",()=>{
+
+    signupForm.classList.add("hidden");
+    loginForm.classList.remove("hidden");
+
+});
+
+showSignup.addEventListener("click",()=>{
+
+    loginForm.classList.add("hidden");
+    signupForm.classList.remove("hidden");
+
+});
+
+
+// =========================================
+// OTP INPUT
+// =========================================
+
+function setupOtpInput(id){
+
+    const input=document.getElementById(id);
+
+    // Only numbers
+
+    input.addEventListener("input",()=>{
+
+        input.value=input.value.replace(/\D/g,"");
+
+        if(input.value.length>6){
+
+            input.value=input.value.substring(0,6);
+
+        }
+
+    });
+
+    // Paste OTP
+
+    input.addEventListener("paste",(e)=>{
+
+        e.preventDefault();
+
+        let text=(e.clipboardData||window.clipboardData)
+        .getData("text");
+
+        text=text.replace(/\D/g,"");
+
+        input.value=text.substring(0,6);
+
+    });
+
+}
+
+setupOtpInput("signup-otp");
+setupOtpInput("login-otp");
+
+
+// =========================================
+// AUTO FOCUS OTP
+// =========================================
+
+function focusSignupOtp(){
+
+    setTimeout(()=>{
+
+        document.getElementById("signup-otp").focus();
+
+    },200);
+
+}
+
+function focusLoginOtp(){
+
+    setTimeout(()=>{
+
+        document.getElementById("login-otp").focus();
+
+    },200);
+
+}
+
+
+// =========================================
+// ENTER KEY SUPPORT
+// =========================================
+
+document.getElementById("signup-otp")
+.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Enter"){
+
+        document
+        .getElementById("signup-otp-form-element")
+        .requestSubmit();
+
+    }
+
+});
+
+document.getElementById("login-otp")
+.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Enter"){
+
+        document
+        .getElementById("login-otp-form-element")
+        .requestSubmit();
+
+    }
+
+});
+
+
+// =========================================
+// SIGNUP
+// =========================================
+
+document.getElementById("signup-form-element").addEventListener("submit", async (e)=>{
+
+    e.preventDefault();
+
+    const btn=e.target.querySelector("button");
+
+    if(btn.disabled) return;
+
+    const name=document.getElementById("signup-name").value.trim();
+    const email=document.getElementById("signup-email").value.trim();
+    const password=document.getElementById("signup-password").value;
+
+    if(!isValidEmail(email)){
+        showPopup("Please enter a valid email.","error");
+        return;
+    }
+
+    if(!isStrongPassword(password)){
+        showPopup("Password must contain 8+ characters, 1 uppercase letter and 1 number.","error");
+        return;
+    }
+
+    setLoading(btn,true,"Sending OTP...");
+
+    try{
+
+        const res=await fetch("https://login-backend-1toz.onrender.com/signup",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+                name,
+                email,
+                password
+            })
+
+        });
+
+        const data=await res.json();
+
+        if(res.ok){
+
+            currentSignupEmail=email;
+
+            showPopup(data.message,"success");
+
+            setTimeout(()=>{
+
+                signupForm.classList.add("hidden");
+                signupOtpForm.classList.remove("hidden");
+
+                focusSignupOtp();
+
+                if(signupTimer)
+                    clearInterval(signupTimer);
+
+                signupTimer=startResendTimer("resend-signup-otp");
+
+            },1000);
+
+        }else{
+
+            showPopup(data.message,"error");
+
+        }
+
+    }catch(err){
+
+        showPopup(err.message,"error");
+
+    }
+
+    setLoading(btn,false);
+
+});
+
+
+// =========================================
+// VERIFY SIGNUP OTP
+// =========================================
+
+document.getElementById("signup-otp-form-element").addEventListener("submit", async (e)=>{
+
+    e.preventDefault();
+
+    const btn=e.target.querySelector("button");
+
+    if(btn.disabled) return;
+
+    const otp=document.getElementById("signup-otp").value.trim();
+
+    if(otp.length!==6){
+
+        showPopup("Please enter a valid 6-digit OTP.","error");
+
+        return;
+
+    }
+
+    setLoading(btn,true,"Verifying...");
+
+    try{
+
+        const res=await fetch("https://login-backend-1toz.onrender.com/verify-signup-otp",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+
+                email:currentSignupEmail,
+
+                otp
+
+            })
+
+        });
+
+        const data=await res.json();
+
+        if(res.ok){
+
+            showPopup(data.message,"success");
+
+            clearInterval(signupTimer);
+
+            setTimeout(()=>{
+
+                document.getElementById("signup-form-element").reset();
+
+                document.getElementById("signup-otp-form-element").reset();
+
+                currentSignupEmail="";
+
+                signupOtpForm.classList.add("hidden");
+
+                loginForm.classList.remove("hidden");
+
+                document.getElementById("login-email").focus();
+
+            },1000);
+
+        }else{
+
+            showPopup(data.message,"error");
+
+        }
+
+    }catch(err){
+
+        showPopup(err.message,"error");
+
+    }
+
+    setLoading(btn,false);
+
+});
+
+
+// =========================================
+// SIGNUP RESEND OTP
+// =========================================
+
+document.getElementById("resend-signup-otp").addEventListener("click", async (e)=>{
+
+    const btn=e.target;
+
+    if(btn.disabled) return;
+
+    setLoading(btn,true,"Sending...");
+
+    try{
+
+        const res=await fetch("https://login-backend-1toz.onrender.com/resend-signup-otp",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+                email:currentSignupEmail
+            })
+
+        });
+
+        const data=await res.json();
+
+        if(res.ok){
+
+            // Success popup
+            showPopup(data.message,"success");
+
+            // Clear old OTP
+            document.getElementById("signup-otp").value="";
+
+            // Focus OTP box
+            document.getElementById("signup-otp").focus();
+
+            // Restart countdown
+            if(signupTimer){
+
+                clearInterval(signupTimer);
+
+            }
+
+            signupTimer=startResendTimer("resend-signup-otp");
+
+        }else{
+
+            showPopup(data.message,"error");
+
+        }
+
+    }catch(err){
+
+        showPopup(err.message,"error");
+
+    }
+
+    setLoading(btn,false);
+
+});
+
+
+// =========================================
+// LOGIN
+// =========================================
+
+document.getElementById("login-form-element").addEventListener("submit", async (e)=>{
+
+    e.preventDefault();
+
+    const btn = e.target.querySelector("button");
+
+    if(btn.disabled) return;
+
+    const email = document.getElementById("login-email").value.trim();
+    const password = document.getElementById("login-password").value;
+
+    if(!isValidEmail(email)){
+
+        showPopup("Please enter a valid email.","error");
+        return;
+
+    }
+
+    if(password===""){
+
+        showPopup("Please enter your password.","error");
+        return;
+
+    }
+
+    setLoading(btn,true,"Signing In...");
+
+    try{
+
+        const res = await fetch("https://login-backend-1toz.onrender.com/login",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+                email,
+                password
+            })
+
+        });
+
+        const data = await res.json();
+
+        if(res.ok){
+
+            currentLoginEmail = email;
+
+            showPopup(data.message,"success");
+
+            setTimeout(()=>{
+
+                loginForm.classList.add("hidden");
+                loginOtpForm.classList.remove("hidden");
+
+                focusLoginOtp();
+
+                if(loginTimer){
+
+                    clearInterval(loginTimer);
+
+                }
+
+                loginTimer = startResendTimer("resend-login-otp");
+
+            },1000);
+
+        }else{
+
+            showPopup(data.message,"error");
+
+        }
+
+    }catch(err){
+
+        showPopup(err.message,"error");
+
+    }
+
+    setLoading(btn,false);
+
+});
+
+
+// =========================================
+// VERIFY LOGIN OTP
+// =========================================
+
+document.getElementById("login-otp-form-element").addEventListener("submit", async (e)=>{
+
+    e.preventDefault();
+
+    const btn = e.target.querySelector("button");
+
+    if(btn.disabled) return;
+
+    const otp = document.getElementById("login-otp").value.trim();
+
+    if(otp.length !== 6){
+
+        showPopup("Please enter a valid 6-digit OTP.","error");
+        return;
+
+    }
+
+    setLoading(btn,true,"Verifying...");
+
+    try{
+
+        const res = await fetch("https://login-backend-1toz.onrender.com/verify-login-otp",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+
+                email:currentLoginEmail,
+
+                otp
+
+            })
+
+        });
+
+        const data = await res.json();
+
+        if(res.ok){
+
+            showPopup(data.message,"success");
+
+            if(loginTimer){
+
+                clearInterval(loginTimer);
+
+            }
+
+            setTimeout(()=>{
+
+                // Clear all login data
+                document.getElementById("login-form-element").reset();
+                document.getElementById("login-otp-form-element").reset();
+
+                currentLoginEmail="";
+
+                // Hide OTP form
+                loginOtpForm.classList.add("hidden");
+
+                // Prevent browser back button from showing old data
+                window.history.replaceState(null,"",window.location.href);
+
+                // Redirect
+                localStorage.setItem("isLoggedIn","true");
+
+localStorage.setItem("userEmail",currentLoginEmail);
+currentLoginEmail = "";
+
+window.location.replace("index.html");
+
+            },1000);
+
+        }else{
+
+            showPopup(data.message,"error");
+
+        }
+
+    }catch(err){
+
+        showPopup(err.message,"error");
+
+    }
+
+    setLoading(btn,false);
+
+});
+
+
+// =========================================
+// LOGIN RESEND OTP
+// =========================================
+
+document.getElementById("resend-login-otp").addEventListener("click", async (e)=>{
+
+    const btn = e.target;
+
+    if(btn.disabled) return;
+
+    setLoading(btn,true,"Sending...");
+
+    try{
+
+        const res = await fetch("https://login-backend-1toz.onrender.com/resend-login-otp",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+                email:currentLoginEmail
+            })
+
+        });
+
+        const data = await res.json();
+
+        if(res.ok){
+
+            // Success popup
+            showPopup(data.message,"success");
+
+            // Clear previous OTP
+            document.getElementById("login-otp").value = "";
+
+            // Auto focus OTP box
+            document.getElementById("login-otp").focus();
+
+            // Restart countdown
+            if(loginTimer){
+
+                clearInterval(loginTimer);
+
+            }
+
+            loginTimer = startResendTimer("resend-login-otp");
+
+        }else{
+
+            showPopup(data.message,"error");
+
+        }
+
+    }catch(err){
+
+        showPopup("Error: " + err.message,"error");
+
+    }
+
+    setLoading(btn,false);
+
+});
+
+
+</script>
+
+</body>
+</html>
