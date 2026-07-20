@@ -248,18 +248,198 @@ transform:translateX(-12px);
 }
 
 .auth-panel{
-    width:420px;
-    min-height:350px;
-    padding:35px;
-    border-radius:25px;
-    background:rgba(255,255,255,.05);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.08);
-    box-shadow:0 20px 50px rgba(0,0,0,.35);
-    transition:.5s;
-    overflow:hidden;
+.auth-panel{
+    width: min(420px, calc(100vw - 32px));
+    min-height: 350px;
+    padding: clamp(18px, 5vw, 35px);
+    box-sizing: border-box;
+    border-radius: 25px;
+
+    background: rgba(255,255,255,0.05);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+
+    transition: .5s;
+    overflow: hidden;
 }
+
+
+/* =========================
+   RESPONSIVE MOBILE DESIGN
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Lamp automatically adapts to screen width */
+
+.lamp-wrapper {
+    width: min(200px, 45vw);
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lamp-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+}
+
+/* Auth panel automatically fits all screens */
+
+.auth-panel {
+    width: min(420px, calc(100vw - 32px));
+    max-width: 100%;
+    min-height: 350px;
+
+    padding: clamp(18px, 5vw, 35px);
+
+    box-sizing: border-box;
+}
+
+/* Inputs stay inside the panel */
+
+.form-group {
+    width: 100%;
+}
+
+.form-group input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Small mobile phones */
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .lamp-wrapper {
+        width: min(160px, 42vw);
+    }
+
+    .auth-panel {
+        width: calc(100vw - 24px);
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+
+    .welcome-icon {
+        font-size: 55px;
+        margin-bottom: 12px;
+    }
+
+    .welcome-screen h1 {
+        font-size: 28px;
+    }
+
+    .welcome-screen h3 {
+        font-size: 19px;
+    }
+
+    .welcome-screen p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .arrow {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    #login-form h2,
+    #signup-form h2,
+    #signup-otp-form h2,
+    #login-otp-form h2 {
+        font-size: 24px;
+    }
+
+    .form-group input {
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+/* Very small phones */
+
+@media (max-width: 360px) {
+
+    .container {
+        padding: 8px;
+    }
+
+    .lamp-wrapper {
+        width: 125px;
+    }
+
+    .auth-panel {
+        width: calc(100vw - 16px);
+        padding: 16px 12px;
+    }
+
+    .welcome-screen h1 {
+        font-size: 24px;
+    }
+
+    .welcome-screen h3 {
+        font-size: 17px;
+    }
+
+    .welcome-screen p {
+        font-size: 13px;
+    }
+
+    .arrow {
+        font-size: 14px;
+    }
+}
+
+	
 </style>
 </head>
 <body data-on="false">
