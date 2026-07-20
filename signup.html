@@ -250,7 +250,7 @@ transform:translateX(-12px);
 .auth-panel{
     width:420px;
 	height: auto;
-    min-height: auto;
+    min-height: 0;
     padding:35px;
     border-radius:25px;
     background:rgba(255,255,255,.05);
@@ -262,29 +262,34 @@ transform:translateX(-12px);
     overflow: visible;
 }
 
+/* =====================================================
+   FINAL MOBILE LAYOUT
+   LAMP FIRST → LOGIN FORM BELOW
+===================================================== */
 
-/* =========================================
-   MOBILE LAMP + LOGIN SCROLL LAYOUT
-========================================= */
+@media screen and (max-width: 600px) {
 
-@media (max-width: 600px) {
-
-    html,
-    body {
+    /* Prevent horizontal overflow */
+    html {
         width: 100%;
-        min-height: 100%;
-        margin: 0;
-        padding: 0;
         overflow-x: hidden;
     }
 
     body {
-        min-height: 100vh;
-        min-height: 100dvh;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
+    /* Main page */
     .container {
         width: 100%;
+        min-width: 0;
+        min-height: 100vh;
         min-height: 100dvh;
 
         display: flex;
@@ -293,93 +298,111 @@ transform:translateX(-12px);
         align-items: center;
         justify-content: flex-start;
 
-        padding: 20px 12px 50px;
-
-        gap: 0;
+        padding: 0;
+        margin: 0;
 
         overflow: visible;
     }
 
-    /* =========================
-       LAMP SECTION
-    ========================= */
+    /* =================================================
+       LAMP AREA
+    ================================================= */
 
     .lamp-wrapper {
         width: 100%;
+        height: 100vh;
+        height: 100dvh;
+
+        min-height: 100vh;
         min-height: 100dvh;
 
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
 
         flex-shrink: 0;
+
+        overflow: visible;
     }
 
     .lamp-svg {
-        width: min(220px, 65vw);
+        display: block;
+
+        width: min(75vw, 260px);
         height: auto;
-        max-width: 100%;
+
+        max-width: 90vw;
     }
 
-    /* =========================
-       LOGIN FORM SECTION
-    ========================= */
+    /* =================================================
+       AUTH BOX
+    ================================================= */
 
-     .auth-panel {
-        width: calc(100vw - 24px);
+    .auth-panel {
+        position: relative;
+
+        width: calc(100% - 24px);
         max-width: 420px;
 
-        min-height: auto;
         height: auto;
+        min-height: 0;
 
-        margin-top: 30px;
-        margin-bottom: 40px;
+        margin: 24px auto 40px;
 
         padding: 24px 18px;
 
         box-sizing: border-box;
 
-        border-radius: 20px;
-
         overflow: visible;
     }
 
-    /* =========================
-       FORM INPUTS
-    ========================= */
+    /* =================================================
+       ALL FORM CONTENT
+    ================================================= */
+
+    .auth-panel form {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+    }
+
+    .auth-panel input,
+    .auth-panel button {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
 
     .form-group {
         width: 100%;
     }
 
-    .form-group input {
-        width: 100%;
+    /* =================================================
+       MOBILE FONT SIZES
+    ================================================= */
+
+    .auth-panel h1,
+    .auth-panel h2,
+    .auth-panel h3 {
         max-width: 100%;
-        box-sizing: border-box;
+        overflow-wrap: break-word;
     }
 
-    /* =========================
-       SMALL PHONE
-    ========================= */
+    /* =================================================
+       SMALL PHONES
+    ================================================= */
 
-    @media (max-width: 380px) {
-
-        .container {
-            padding-left: 8px;
-            padding-right: 8px;
-        }
+    @media screen and (max-width: 380px) {
 
         .lamp-svg {
-            width: 180px;
+            width: min(70vw, 210px);
         }
 
         .auth-panel {
-            width: calc(100vw - 16px);
-            padding: 16px 12px;
+            width: calc(100% - 16px);
+            padding: 20px 14px;
         }
     }
 }
-
 	
 </style>
 </head>
