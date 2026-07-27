@@ -612,12 +612,22 @@ opacity:1;
                 </div>
 
                 <a href="#" onclick="goDashboard()">
-                    🏠 Dashboard
-                </a>
+🏠 Dashboard
+</a>
 
-                <a href="#" onclick="event.preventDefault(); logout();">
-                    🚪 Logout
-                </a>
+<a href="#"
+onclick="event.preventDefault();openProfilePopup();">
+
+👤 Update Profile
+
+</a>
+
+<a href="#"
+onclick="event.preventDefault();logout();">
+
+🚪 Logout
+
+</a>
 
             </div>
 
@@ -670,7 +680,61 @@ opacity:1;
 
 </div>
 
+<!-- profile Confirmation Popup -->
 
+<div id="profilePopup" class="popup-overlay">
+
+<div class="popup-box">
+
+<h2>
+
+Complete Profile
+
+</h2>
+
+<p>
+
+Please enter your details.
+
+</p>
+
+<input
+type="text"
+id="profileName"
+placeholder="Full Name"
+style="width:100%;padding:12px;margin-bottom:15px;">
+
+<input
+type="text"
+id="profilePhone"
+placeholder="Phone Number"
+style="width:100%;padding:12px;margin-bottom:20px;">
+
+<div class="popup-buttons">
+
+<button
+class="cancel-btn"
+onclick="closeProfilePopup()">
+
+Cancel
+
+</button>
+
+<button
+class="logout-btn"
+onclick="saveProfile()">
+
+Save
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+    
 <!-- Logout Confirmation Popup -->
 
 <div id="logoutPopup" class="popup-overlay">
@@ -764,6 +828,8 @@ function checkLogin(){
 
         userEmail.innerHTML=email || "User";
 
+        checkProfile(email);
+
     }else{
 
         loginBtn.style.display="block";
@@ -855,6 +921,39 @@ setTimeout(()=>{
 }
 
 
+
+async function checkProfile(email){
+
+const res =
+await fetch(
+
+API+"/profile?email="+
+encodeURIComponent(email)
+
+);
+
+const data =
+await res.json();
+
+if(data.profile_completed===0){
+
+document
+.getElementById("profileName")
+.value =
+data.name || "";
+
+document
+.getElementById("profilePhone")
+.value =
+data.phone || "";
+
+openProfilePopup();
+
+}
+
+}
+
+    
 // ===========================================
 // LOGIN BUTTON
 // ===========================================
@@ -900,6 +999,113 @@ function closeLogoutPopup(){
 
 }
 
+const API =
+"https://login-backend-1toz.onrender.com";
+
+function openProfilePopup(){
+
+document
+.getElementById("profilePopup")
+.classList.add("show");
+
+}
+
+function closeProfilePopup(){
+
+document
+.getElementById("profilePopup")
+.classList.remove("show");
+
+}
+
+async function saveProfile(){
+
+const name =
+document
+.getElementById("profileName")
+.value
+.trim();
+
+const phone =
+document
+.getElementById("profilePhone")
+.value
+.trim();
+
+const email =
+localStorage.getItem("userEmail");
+
+if(name===""){
+
+showPopup(
+"Enter your name",
+"error"
+);
+
+return;
+
+}
+
+if(!/^[0-9]{10}$/.test(phone)){
+
+showPopup(
+"Enter valid phone number",
+"error"
+);
+
+return;
+
+}
+
+const res =
+await fetch(
+
+API+"/update-profile",
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+email,
+
+name,
+
+phone
+
+})
+
+}
+
+);
+
+const data =
+await res.json();
+
+if(res.ok){
+
+showPopup(data.message);
+
+closeProfilePopup();
+
+}
+
+else{
+
+showPopup(data.message,"error");
+
+}
+
+}
+
+    
 function confirmLogout(){
 
     localStorage.clear();
