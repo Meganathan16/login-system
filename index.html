@@ -607,29 +607,44 @@ opacity:1;
 
             <div class="dropdown">
 
-                <div class="dropdown-header" id="userEmail">
-                    user@example.com
-                </div>
+<div class="dropdown-header" id="userEmail">
 
-                <a href="#" onclick="goDashboard()">
+user@example.com
+
+</div>
+
+<a href="#" onclick="goDashboard()">
 🏠 Dashboard
 </a>
 
-<a href="#"
-onclick="event.preventDefault();openProfilePopup();">
+<a
+id="updateProfileBtn"
+href="#"
+onclick="openProfile()">
 
-👤 Update Profile
+📝 Update Profile
 
 </a>
 
-<a href="#"
+<a
+id="editProfileBtn"
+href="#"
+onclick="openProfile()">
+
+✏ Edit Profile
+
+</a>
+
+<a
+href="#"
 onclick="event.preventDefault();logout();">
 
 🚪 Logout
 
 </a>
 
-            </div>
+</div>
+            
 
         </div>
 
@@ -686,35 +701,25 @@ onclick="event.preventDefault();logout();">
 
 <div class="popup-box">
 
-<h2>
-
-Complete Profile
-
-</h2>
-
-<p>
-
-Please enter your details.
-
-</p>
+<h2>Profile</h2>
 
 <input
 type="text"
 id="profileName"
-placeholder="Full Name"
-style="width:100%;padding:12px;margin-bottom:15px;">
+placeholder="Enter Name"
+style="width:100%;padding:12px;margin:10px 0;border-radius:10px;border:none;">
 
 <input
-type="text"
+type="tel"
 id="profilePhone"
-placeholder="Phone Number"
-style="width:100%;padding:12px;margin-bottom:20px;">
+placeholder="Enter Phone Number"
+style="width:100%;padding:12px;margin:10px 0;border-radius:10px;border:none;">
 
 <div class="popup-buttons">
 
 <button
 class="cancel-btn"
-onclick="closeProfilePopup()">
+onclick="closeProfile()">
 
 Cancel
 
@@ -733,6 +738,7 @@ Save
 </div>
 
 </div>
+    
 
     
 <!-- Logout Confirmation Popup -->
@@ -829,6 +835,23 @@ function checkLogin(){
         userEmail.innerHTML=email || "User";
 
         checkProfile(email);
+
+        const completed=localStorage.getItem("profileCompleted");
+
+if(completed==="true"){
+
+document.getElementById("updateProfileBtn").style.display="none";
+
+document.getElementById("editProfileBtn").style.display="block";
+
+}else{
+
+document.getElementById("updateProfileBtn").style.display="block";
+
+document.getElementById("editProfileBtn").style.display="none";
+
+}
+        
 
     }else{
 
@@ -1114,6 +1137,72 @@ function confirmLogout(){
 
 }
 
+
+async function openProfile(){
+
+const email=localStorage.getItem("userEmail");
+
+document.getElementById("profilePopup").classList.add("show");
+
+const res=await fetch(`http://localhost:5000/profile/${email}`);
+
+const data=await res.json();
+
+document.getElementById("profileName").value=data.username||"";
+
+document.getElementById("profilePhone").value=data.phone||"";
+
+}
+
+function closeProfile(){
+
+document.getElementById("profilePopup").classList.remove("show");
+
+}
+
+async function saveProfile(){
+
+const email=localStorage.getItem("userEmail");
+
+const username=document.getElementById("profileName").value;
+
+const phone=document.getElementById("profilePhone").value;
+
+const res=await fetch("http://localhost:5000/update-profile",{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+email,
+
+username,
+
+phone
+
+})
+
+});
+
+const data=await res.json();
+
+showPopup(data.message);
+
+localStorage.setItem("profileCompleted","true");
+
+document.getElementById("updateProfileBtn").style.display="none";
+
+document.getElementById("editProfileBtn").style.display="block";
+
+closeProfile();
+
+}
 </script>
 
 </body>
