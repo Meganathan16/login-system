@@ -3614,23 +3614,6 @@ async function verifyLoginOtp(
                 );
 
 
-                  // Get profile information
-const profileResponse = await fetch(`${API_URL}/profile/${email}`);
-
-const profileData = await profileResponse.json();
-
-                  if(profileData.phone){
-
-    localStorage.setItem("profileCompleted","true");
-
-}else{
-
-    localStorage.setItem("profileCompleted","false");
-
-}
-                  
-
-
                 currentLoginEmail =
                     "";
 
