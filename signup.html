@@ -1336,21 +1336,13 @@ Signup
 <div class="form-group">
 
 
-<label
-    for="signup-name">
-
-Name
-
-</label>
-
+<label for="signup-username">Username</label>
 
 <input
-
     type="text"
-
-    id="signup-name"
-
-    required>
+    id="signup-username"
+    required
+>
 
 
 </div>
@@ -2688,6 +2680,12 @@ function isStrongPassword(
 }
 
 
+function isValidUsername(username) {
+    return /^(?=.*\d)(?=.*[^A-Za-z0-9])[A-Za-z0-9._@#-]{3,30}$/.test(username);
+}
+
+      
+
 function isValidEmail(
 
     email
@@ -3767,13 +3765,11 @@ document
             }
 
 
-            const name =
-                document
-                .getElementById(
-                    "signup-name"
-                )
-                .value
-                .trim();
+            const username =
+document
+.getElementById("signup-username")
+.value
+.trim();
 
 
             const email =
@@ -3791,6 +3787,17 @@ document
                     "signup-password"
                 )
                 .value;
+
+
+              if (!isValidUsername(username)) {
+
+    showPopup(
+        "Username must contain at least one number and one special character.",
+        "error"
+    );
+
+    return;
+}
 
 
             if(
@@ -3873,7 +3880,7 @@ document
 
                                     {
 
-                                        name,
+                                        username,
 
                                         email,
 
