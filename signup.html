@@ -1643,22 +1643,15 @@ Login
 <div class="form-group">
 
 
-<label
-
-    for="login-email">
-
-Email
-
+<label for="login-identifier">
+    Username or Email
 </label>
 
-
 <input
-
-    type="email"
-
-    id="login-email"
-
-    required>
+    type="text"
+    id="login-identifier"
+    required
+>
 
 
 </div>
@@ -4206,13 +4199,11 @@ document
             }
 
 
-            const email =
-                document
-                .getElementById(
-                    "login-email"
-                )
-                .value
-                .trim();
+            const identifier =
+document
+.getElementById("login-identifier")
+.value
+.trim();
 
 
             const password =
@@ -4223,25 +4214,18 @@ document
                 .value;
 
 
-            if(
-                !isValidEmail(
-                    email
-                )
-            ) {
+            if (
+    identifier === ""
+) {
 
+    showPopup(
+        "Please enter your username or email.",
+        "error"
+    );
 
-                showPopup(
+    return;
 
-                    "Please enter a valid email.",
-
-                    "error"
-
-                );
-
-
-                return;
-
-            }
+}
 
 
             if(password === "") {
@@ -4299,7 +4283,7 @@ document
 
                                     {
 
-                                        email,
+                                      identifier,
 
                                         password
 
@@ -4320,7 +4304,7 @@ document
 
 
                     currentLoginEmail =
-                        email;
+                        data.email;
 
 
                     showPopup(
