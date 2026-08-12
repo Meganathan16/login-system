@@ -575,6 +575,907 @@ opacity:1;
 
 }
 
+
+
+
+
+
+
+```css
+/* =====================================================
+   HIDE PROFILE POPUP BY DEFAULT
+===================================================== */
+
+.profile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 99998;
+}
+
+/* Show profile popup only when active */
+.profile-overlay.active {
+    display: flex;
+}
+
+
+/* =====================================================
+   PROFILE POPUP
+===================================================== */
+
+.profile-popup {
+    width: 430px;
+    max-width: 92%;
+
+    max-height: 90vh;
+    overflow-y: auto;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    background: rgba(255, 255, 255, 0.18);
+
+    backdrop-filter: blur(25px);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+
+    color: white;
+
+    position: relative;
+}
+
+
+/* Profile close button */
+
+.profile-close {
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.2);
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+
+/* Profile icon */
+
+.profile-icon {
+    text-align: center;
+
+    font-size: 55px;
+
+    margin-bottom: 10px;
+}
+
+
+/* Profile heading */
+
+.profile-popup h2 {
+    text-align: center;
+
+    margin-bottom: 8px;
+}
+
+
+.profile-subtitle {
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    opacity: .85;
+}
+
+
+/* Profile fields */
+
+.profile-field {
+    margin-bottom: 15px;
+}
+
+.profile-field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: 600;
+}
+
+
+.profile-field input,
+.profile-field select {
+
+    width: 100%;
+
+    padding: 12px 15px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    background: rgba(255,255,255,.9);
+
+    color: #222;
+}
+
+
+/* Gender */
+
+.gender-options {
+
+    display: flex;
+
+    gap: 25px;
+
+    margin-top: 8px;
+}
+
+.gender-option {
+
+    display: flex !important;
+
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+}
+
+.gender-option input {
+    width: auto;
+}
+
+
+/* Profile buttons */
+
+.profile-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.profile-cancel,
+.profile-save {
+
+    padding: 12px 28px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.profile-cancel {
+    background: #6b7280;
+}
+
+.profile-save {
+    background: #007bff;
+}
+
+.profile-cancel:hover,
+.profile-save:hover {
+    transform: scale(1.05);
+}
+
+
+/* =====================================================
+   HIDE LOGOUT POPUP BY DEFAULT
+===================================================== */
+
+.logout-overlay {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,.45);
+
+    backdrop-filter: blur(6px);
+
+    z-index: 99999;
+}
+
+
+/* Show logout popup only when active */
+
+.logout-overlay.active {
+    display: flex;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:500px) {
+
+    .profile-popup {
+        padding: 25px;
+
+        width: 94%;
+    }
+
+    .profile-buttons {
+        flex-direction: column;
+    }
+
+    .profile-cancel,
+    .profile-save {
+        width: 100%;
+    }
+
+}
+
+/* =====================================================
+   PROFILE POPUP
+===================================================== */
+
+#profileOverlay {
+    display: none !important;
+}
+
+#profileOverlay.active {
+    display: flex !important;
+}
+
+
+/* =====================================================
+   PROFILE CLOSE BUTTON
+===================================================== */
+
+.profile-close {
+
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    outline: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.2);
+
+    color: white;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 999999;
+
+    pointer-events: auto;
+
+    transition: 0.25s;
+}
+
+.profile-close:hover {
+
+    background: #ef4444;
+
+    transform: rotate(90deg) scale(1.1);
+
+}
+
+
+
+
+
+
+/* =====================================================
+   DELETE ACCOUNT MENU OPTION
+===================================================== */
+
+.delete-account-link {
+    color: #dc2626 !important;
+}
+
+.delete-account-link:hover {
+    background: #fee2e2 !important;
+    color: #b91c1c !important;
+}
+
+
+/* =====================================================
+   DELETE ACCOUNT CONFIRMATION OVERLAY
+===================================================== */
+
+#deleteAccountOverlay,
+#deleteOtpOverlay {
+    display: none !important;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 999999 !important;
+}
+
+
+#deleteAccountOverlay.active,
+#deleteOtpOverlay.active {
+    display: flex !important;
+}
+
+
+/* =====================================================
+   DELETE CONFIRMATION BOX
+===================================================== */
+
+.delete-account-popup {
+
+    width: 400px;
+    max-width: 92%;
+
+    padding: 35px;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,.18);
+
+    backdrop-filter: blur(25px);
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    box-shadow: 0 25px 60px rgba(0,0,0,.4);
+
+    text-align: center;
+
+    color: white;
+
+    animation: deletePopupIn .25s ease;
+}
+
+
+@keyframes deletePopupIn {
+
+    from {
+        opacity: 0;
+        transform: scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+.delete-account-icon {
+
+    font-size: 65px;
+
+    margin-bottom: 15px;
+}
+
+
+.delete-account-popup h2 {
+
+    margin-bottom: 12px;
+
+    font-size: 28px;
+}
+
+
+.delete-account-popup p {
+
+    line-height: 1.6;
+
+    margin-bottom: 10px;
+}
+
+
+.delete-warning {
+
+    color: #fecaca;
+
+    font-size: 14px;
+
+    margin-bottom: 25px !important;
+}
+
+
+/* =====================================================
+   DELETE BUTTONS
+===================================================== */
+
+.delete-account-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+}
+
+
+.delete-cancel-btn,
+.delete-confirm-btn {
+
+    padding: 12px 25px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+
+.delete-cancel-btn {
+
+    background: #6b7280;
+}
+
+
+.delete-confirm-btn {
+
+    background: #dc2626;
+}
+
+
+.delete-cancel-btn:hover,
+.delete-confirm-btn:hover {
+
+    transform: scale(1.05);
+}
+
+
+.delete-confirm-btn:hover {
+
+    background: #b91c1c;
+}
+
+
+/* =====================================================
+   DELETE OTP POPUP
+===================================================== */
+
+.delete-otp-popup {
+
+    width: 420px;
+    max-width: 92%;
+
+    padding: 35px;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,.18);
+
+    backdrop-filter: blur(25px);
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    box-shadow: 0 25px 60px rgba(0,0,0,.4);
+
+    text-align: center;
+
+    color: white;
+
+    position: relative;
+
+    animation: deletePopupIn .25s ease;
+}
+
+
+.delete-otp-close {
+
+    position: absolute;
+
+    top: 10px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.2);
+
+    color: white;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+
+.delete-otp-close:hover {
+
+    background: #ef4444;
+
+    transform: rotate(90deg);
+}
+
+
+.delete-otp-icon {
+
+    font-size: 55px;
+
+    margin-bottom: 12px;
+}
+
+
+.delete-otp-popup h2 {
+
+    margin-bottom: 12px;
+}
+
+
+#deleteOtpEmail {
+
+    display: block;
+
+    margin-bottom: 15px;
+
+    word-break: break-all;
+}
+
+
+.delete-otp-subtitle {
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    opacity: .9;
+
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   OTP INPUT
+===================================================== */
+
+.delete-otp-input {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.95);
+
+    color: #111;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    letter-spacing: 8px;
+
+    text-align: center;
+
+    margin-bottom: 15px;
+}
+
+
+.delete-otp-input:focus {
+
+    box-shadow: 0 0 0 3px rgba(255,255,255,.35);
+}
+
+
+/* =====================================================
+   OTP TIMER
+===================================================== */
+
+.delete-otp-timer {
+
+    min-height: 22px;
+
+    margin-bottom: 15px;
+
+    font-size: 14px;
+
+    opacity: .9;
+}
+
+
+/* =====================================================
+   VERIFY BUTTON
+===================================================== */
+
+.delete-verify-btn {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #dc2626;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    margin-bottom: 12px;
+}
+
+
+.delete-verify-btn:hover {
+
+    background: #b91c1c;
+
+    transform: scale(1.03);
+}
+
+
+/* =====================================================
+   RESEND OTP
+===================================================== */
+
+.delete-resend-btn {
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    text-decoration: underline;
+}
+
+
+.delete-resend-btn:disabled {
+
+    opacity: .45;
+
+    cursor: not-allowed;
+
+    text-decoration: none;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:500px) {
+
+    .delete-account-popup,
+    .delete-otp-popup {
+
+        width: 94%;
+
+        padding: 28px 22px;
+    }
+
+
+    .delete-account-buttons {
+
+        flex-direction: column;
+    }
+
+
+    .delete-cancel-btn,
+    .delete-confirm-btn {
+
+        width: 100%;
+    }
+
+}
+
+```css
+/* =========================================================
+   FORCE POPUP TO THE VERY FRONT
+========================================================= */
+
+#popup,
+#popupOverlay,
+.popup,
+.popup-overlay,
+.custom-popup,
+.alert-popup {
+
+    position: fixed !important;
+
+    z-index: 2147483647 !important;
+}
+
+
+/* If your popup has an overlay */
+
+#popupOverlay,
+.popup-overlay,
+.custom-popup-overlay {
+
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2147483647 !important;
+}
+
+
+/* Delete OTP popup stays below the message popup */
+
+#deleteOtpOverlay {
+    z-index: 99999 !important;
+}
+
+#deleteAccountOverlay {
+    z-index: 99998 !important;
+}
+
+
+/* =====================================================
+   HIDE MAIN PAGE WHEN PROFILE IS OPEN
+===================================================== */
+
+body.profile-is-open .topbar,
+body.profile-is-open .card {
+    display: none !important;
+}
+
+
+/* =====================================================
+   PROFILE POPUP MUST BE VISIBLE
+===================================================== */
+
+#profileOverlay {
+    display: none !important;
+}
+
+#profileOverlay.active {
+    display: flex !important;
+}
+
+
+/* =====================================================
+   HIDE MAIN PAGE WHEN DELETE OTP IS OPEN
+===================================================== */
+
+body.delete-otp-is-open .topbar,
+body.delete-otp-is-open .card {
+    display: none !important;
+}
+
+
+/* =====================================================
+   DELETE OTP OVERLAY
+===================================================== */
+
+#deleteOtpOverlay {
+    display: none !important;
+}
+
+#deleteOtpOverlay.active {
+    display: flex !important;
+}
+
+
+/* =====================================================
+   OTP INPUT
+===================================================== */
+
+.delete-otp-input {
+    caret-color: #007bff;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+
+/* =====================================================
+   PROFILE CLOSE BUTTON
+===================================================== */
+
+.profile-close {
+    z-index: 999999 !important;
+    pointer-events: auto !important;
+}
+
 </style>
 
 </head>
@@ -611,24 +1512,24 @@ opacity:1;
                     user@example.com
                 </div>
 
-                <a href="#" onclick="goDashboard()">
+                <a href="#" onclick="goDashboard(); return false;">
 🏠 Dashboard
 </a>
 
-<a href="#"
-onclick="event.preventDefault();openProfilePopup();">
+<a href="#" id="profileMenuOption" onclick="openProfilePopup(); return false;">
+    👤 Update Profile
+</a>
 
-👤 Update Profile
-
+<a href="#" onclick="openLogoutPopup(); return false;">
+    🚪 Logout
 </a>
 
 <a href="#"
-onclick="event.preventDefault();logout();">
-
-🚪 Logout
-
-</a>
-
+       class="delete-account-link"
+       onclick="openDeleteAccountPopup(); return false;">
+        🗑️ Delete My Account
+    </a>
+	
             </div>
 
         </div>
@@ -682,62 +1583,293 @@ onclick="event.preventDefault();logout();">
 
 <!-- profile Confirmation Popup -->
 
-<div id="profilePopup" class="popup-overlay">
+<div class="profile-overlay" id="profileOverlay">
 
-<div class="popup-box">
+    <div class="profile-popup">
 
-<h2>
-
-Complete Profile
-
-</h2>
-
-<p>
-
-Please enter your details.
-
-</p>
-
-<input
-type="text"
-id="profileName"
-placeholder="Full Name"
-style="width:100%;padding:12px;margin-bottom:15px;">
-
-<input
-type="text"
-id="profilePhone"
-placeholder="Phone Number"
-style="width:100%;padding:12px;margin-bottom:20px;">
-
-<div class="popup-buttons">
-
-<button
-class="cancel-btn"
-onclick="closeProfilePopup()">
-
-Cancel
-
+       <button
+    type="button"
+    id="profileCloseBtn"
+    class="profile-close"
+    onclick="closeProfilePopup()"
+    aria-label="Close">
+    &times;
 </button>
+           
+        
 
-<button
-class="logout-btn"
-onclick="saveProfile()">
+        <div class="profile-icon">
+            👤
+        </div>
 
-Save
+        <h2>
+            Complete Profile
+        </h2>
 
-</button>
+        <p class="profile-subtitle">
+            Please enter your details.
+        </p>
+
+
+        <!-- USERNAME -->
+
+        <div class="profile-field">
+
+            <label for="profileUsername">
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="profileUsername"
+                placeholder="Enter your username"
+                maxlength="50">
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="profile-field">
+
+            <label for="profilePhone">
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="profilePhone"
+                placeholder="Enter your 10-digit phone number"
+                maxlength="10"
+                inputmode="numeric">
+
+        </div>
+
+
+        <!-- GENDER -->
+
+        <div class="profile-field">
+
+            <label>
+                Gender
+            </label>
+
+            <div class="gender-options">
+
+                <label class="gender-option">
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Male"
+                        id="genderMale">
+
+                    <span class="radio-dot"></span>
+
+                    <span>Male</span>
+
+                </label>
+
+
+                <label class="gender-option">
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Female"
+                        id="genderFemale">
+
+                    <span class="radio-dot"></span>
+
+                    <span>Female</span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- AGE -->
+
+        <div class="profile-field">
+
+            <label for="profileAge">
+                Age
+            </label>
+
+            <input
+                type="number"
+                id="profileAge"
+                placeholder="Enter your age"
+                min="1"
+                max="120">
+
+        </div>
+
+
+        <!-- STATE -->
+
+        <div class="profile-field">
+
+            <label for="profileState">
+                State of Residence
+            </label>
+
+            <select id="profileState">
+
+                <option value="">
+                    Select your state
+                </option>
+
+                <option value="Andhra Pradesh">
+                    Andhra Pradesh
+                </option>
+
+                <option value="Arunachal Pradesh">
+                    Arunachal Pradesh
+                </option>
+
+                <option value="Assam">
+                    Assam
+                </option>
+
+                <option value="Bihar">
+                    Bihar
+                </option>
+
+                <option value="Chhattisgarh">
+                    Chhattisgarh
+                </option>
+
+                <option value="Goa">
+                    Goa
+                </option>
+
+                <option value="Gujarat">
+                    Gujarat
+                </option>
+
+                <option value="Haryana">
+                    Haryana
+                </option>
+
+                <option value="Himachal Pradesh">
+                    Himachal Pradesh
+                </option>
+
+                <option value="Jharkhand">
+                    Jharkhand
+                </option>
+
+                <option value="Karnataka">
+                    Karnataka
+                </option>
+
+                <option value="Kerala">
+                    Kerala
+                </option>
+
+                <option value="Madhya Pradesh">
+                    Madhya Pradesh
+                </option>
+
+                <option value="Maharashtra">
+                    Maharashtra
+                </option>
+
+                <option value="Manipur">
+                    Manipur
+                </option>
+
+                <option value="Meghalaya">
+                    Meghalaya
+                </option>
+
+                <option value="Mizoram">
+                    Mizoram
+                </option>
+
+                <option value="Nagaland">
+                    Nagaland
+                </option>
+
+                <option value="Odisha">
+                    Odisha
+                </option>
+
+                <option value="Punjab">
+                    Punjab
+                </option>
+
+                <option value="Rajasthan">
+                    Rajasthan
+                </option>
+
+                <option value="Sikkim">
+                    Sikkim
+                </option>
+
+                <option value="Tamil Nadu">
+                    Tamil Nadu
+                </option>
+
+                <option value="Telangana">
+                    Telangana
+                </option>
+
+                <option value="Tripura">
+                    Tripura
+                </option>
+
+                <option value="Uttar Pradesh">
+                    Uttar Pradesh
+                </option>
+
+                <option value="Uttarakhand">
+                    Uttarakhand
+                </option>
+
+                <option value="West Bengal">
+                    West Bengal
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="profile-buttons">
+
+            <button
+                type="button"
+                class="profile-cancel"
+                onclick="closeProfilePopup()">
+
+                Cancel
+
+            </button>
+
+            <button
+                type="button"
+                class="profile-save"
+                onclick="saveProfile()">
+
+                Save
+
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
-
-</div>
-
-</div>
-
     
 <!-- Logout Confirmation Popup -->
 
-<div id="logoutPopup" class="popup-overlay">
+<div class="logout-overlay" id="logoutOverlay">
 
     <div class="popup-box">
 
@@ -776,8 +1908,144 @@ Save
 </div>
 
 
+
+<!-- =====================================================
+     DELETE ACCOUNT CONFIRMATION POPUP
+===================================================== -->
+
+<div class="delete-account-overlay" id="deleteAccountOverlay">
+
+    <div class="delete-account-popup">
+
+        <div class="delete-account-icon">
+            🗑️
+        </div>
+
+        <h2>
+            Delete Account
+        </h2>
+
+        <p>
+            Are you sure you want to permanently delete your account?
+        </p>
+
+        <p class="delete-warning">
+            Your account and profile information will be permanently deleted.
+        </p>
+
+        <div class="delete-account-buttons">
+
+            <button
+                type="button"
+                class="delete-cancel-btn"
+                onclick="closeDeleteAccountPopup()">
+
+                Cancel
+
+            </button>
+
+            <button
+                type="button"
+                class="delete-confirm-btn"
+                onclick="sendDeleteAccountOTP()">
+
+                Delete Account
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     DELETE ACCOUNT OTP POPUP
+===================================================== -->
+
+<div class="delete-otp-overlay" id="deleteOtpOverlay">
+
+    <div class="delete-otp-popup">
+
+        <button
+            type="button"
+            class="delete-otp-close"
+            onclick="closedeleteOtpOverlay()">
+
+            &times;
+
+        </button>
+
+        <div class="delete-otp-icon">
+            📧
+        </div>
+
+        <h2>
+            Verify Your Email
+        </h2>
+
+        <p>
+            We sent a verification OTP to:
+        </p>
+
+        <strong id="deleteOtpEmail">
+            user@example.com
+        </strong>
+
+        <p class="delete-otp-subtitle">
+            Enter the 6-digit OTP to permanently delete your account.
+        </p>
+
+        <input
+            type="text"
+            id="deleteAccountOtp"
+            class="delete-otp-input"
+            maxlength="6"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+            placeholder="Enter OTP">
+
+        <div class="delete-otp-timer"
+             id="deleteOtpTimer">
+        </div>
+
+        <button
+            type="button"
+            id="verifyDeleteAccountOtpBtn"
+            class="delete-verify-btn"
+            onclick="verifyDeleteAccountOTP()">
+
+            Verify & Delete Account
+
+        </button>
+
+        <button
+            type="button"
+            id="deleteAccountResendBtn"
+            class="delete-resend-btn"
+            onclick="resendDeleteAccountOTP()"
+            disabled>
+
+            Resend OTP
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
 <script>
 
+
+const API_URL = "https://login-backend-1toz.onrender.com";
+const BACKEND_URL = "https://login-backend-1toz.onrender.com";
+
+let redirectAfterPopup = false;
+
+	
 // ===========================================
 // PREVENT BACK BUTTON CACHE
 // ===========================================
@@ -864,93 +2132,276 @@ document.addEventListener("click",()=>{
 // POPUP FUNCTION (ADD HERE)
 // ===============================
 
-function showPopup(message,type="success"){
 
-const old=document.getElementById("popup");
+function showPopup(message, type = "info", redirectAfterOK = false) {
 
-if(old) old.remove();
+    let popup =
+        document.getElementById("popup");
 
-const popup=document.createElement("div");
 
-popup.id="popup";
+    /* =====================================================
+       CREATE POPUP IF IT DOES NOT EXIST
+    ===================================================== */
 
-popup.innerHTML=`
+    if (!popup) {
 
-<div style="display:flex;align-items:center;gap:12px;">
+        popup =
+            document.createElement("div");
 
-<span style="font-size:24px;">
-${type==="success"?"✅":"❌"}
-</span>
+        popup.id = "popup";
 
-<span>${message}</span>
+        document.body.appendChild(popup);
+    }
 
-</div>
 
-`;
+    /* =====================================================
+       FORCE POPUP TO FRONT
+    ===================================================== */
 
-popup.style.position="fixed";
-popup.style.top="25px";
-popup.style.left="50%";
-popup.style.transform="translateX(-50%)";
+    popup.style.position = "fixed";
 
-popup.style.background=
-type==="success"
-?"#16a34a"
-:"#dc2626";
+    popup.style.top = "50%";
 
-popup.style.color="white";
-popup.style.padding="16px 28px";
-popup.style.borderRadius="12px";
-popup.style.fontWeight="bold";
-popup.style.boxShadow="0 15px 35px rgba(0,0,0,.3)";
-popup.style.zIndex="99999";
-popup.style.opacity="0";
-popup.style.transition=".35s";
+    popup.style.left = "50%";
 
-document.body.appendChild(popup);
+    popup.style.transform =
+        "translate(-50%, -50%)";
 
-requestAnimationFrame(()=>{
-    popup.style.opacity="1";
-});
+    popup.style.zIndex =
+        "2147483647";
 
-setTimeout(()=>{
-    popup.style.opacity="0";
-    setTimeout(()=>popup.remove(),300);
-},2500);
+    popup.style.display =
+        "block";
 
+
+    /* =====================================================
+       POPUP DESIGN
+    ===================================================== */
+
+    popup.style.width =
+        "min(380px, 85vw)";
+
+    popup.style.padding =
+        "25px";
+
+    popup.style.boxSizing =
+        "border-box";
+
+    popup.style.borderRadius =
+        "18px";
+
+    popup.style.textAlign =
+        "center";
+
+    popup.style.background =
+        "rgba(20, 20, 25, 0.98)";
+
+    popup.style.color =
+        "white";
+
+    popup.style.border =
+        "1px solid rgba(255,255,255,0.2)";
+
+    popup.style.boxShadow =
+        "0 20px 80px rgba(0,0,0,0.8)";
+
+
+    /* =====================================================
+       ICON + TITLE
+    ===================================================== */
+
+    let icon = "ℹ️";
+
+    let title = "Message";
+
+
+    if (type === "error") {
+
+        icon = "⚠️";
+
+        title = "Error";
+    }
+
+
+    if (type === "success") {
+
+        icon = "✅";
+
+        title = "Success";
+    }
+
+
+    /* =====================================================
+       POPUP CONTENT
+    ===================================================== */
+
+    popup.innerHTML = `
+
+        <div style="
+            font-size:40px;
+            margin-bottom:10px;
+        ">
+            ${icon}
+        </div>
+
+        <div style="
+            font-size:22px;
+            font-weight:600;
+            margin-bottom:10px;
+        ">
+            ${title}
+        </div>
+
+        <div style="
+            font-size:15px;
+            line-height:1.5;
+            color:#ddd;
+            margin-bottom:20px;
+        ">
+            ${message}
+        </div>
+
+        <button
+            id="popupOkButton"
+            style="
+                width:100%;
+                padding:12px;
+                border:none;
+                border-radius:10px;
+                background:#e53935;
+                color:white;
+                font-size:15px;
+                font-weight:600;
+                cursor:pointer;
+            "
+        >
+            OK
+        </button>
+
+    `;
+
+
+    /* =====================================================
+       MOVE POPUP TO END OF BODY
+    ===================================================== */
+
+    document.body.appendChild(popup);
+
+
+    /* =====================================================
+       OK BUTTON
+    ===================================================== */
+
+    const okButton =
+        document.getElementById(
+            "popupOkButton"
+        );
+
+
+    if (okButton) {
+
+        okButton.onclick = function () {
+
+            popup.style.display =
+                "none";
+
+
+            /* =============================================
+               REDIRECT AFTER ACCOUNT DELETION
+            ============================================= */
+
+            
+if (redirectAfterOK === true) {
+
+    console.log(
+        "Account deleted successfully."
+    );
+
+    console.log(
+        "Clearing login session..."
+    );
+
+
+    /* =================================================
+       CLEAR ALL LOGIN SESSION DATA
+    ================================================= */
+
+    localStorage.clear();
+
+
+    /* =================================================
+       REFRESH INDEX.HTML
+       
+       After reload, checkLogin() will see that
+       isLoggedIn is no longer "true".
+    ================================================= */
+
+    console.log(
+        "Refreshing index.html..."
+    );
+
+
+    window.location.replace(
+        "./index.html"
+    );
+}
+
+
+        };
+    }
 }
 
 
 
-async function checkProfile(email){
 
-const res =
-await fetch(
 
-API+"/profile?email="+
-encodeURIComponent(email)
 
-);
 
-const data =
-await res.json();
+async function checkProfile(email) {
 
-if(data.profile_completed===0){
+    try {
 
-document
-.getElementById("profileName")
-.value =
-data.name || "";
+        const response = await fetch(
+            `${API_URL}/profile?email=${encodeURIComponent(email)}`
+        );
 
-document
-.getElementById("profilePhone")
-.value =
-data.phone || "";
+        const data = await response.json();
 
-openProfilePopup();
+        if (!response.ok) {
+            console.error("Profile check failed:", data);
+            return;
+        }
 
-}
+        const profileMenuOption =
+            document.getElementById("profileMenuOption");
 
+        if (!profileMenuOption) {
+            return;
+        }
+
+        if (data.profile_completed === 1) {
+
+            // Profile already completed
+            profileMenuOption.innerHTML =
+                "✏️ Edit Profile";
+
+        } else {
+
+            // Profile not completed
+            profileMenuOption.innerHTML =
+                "👤 Update Profile";
+
+        }
+
+    }
+    catch (error) {
+
+        console.error(
+            "CHECK PROFILE ERROR:",
+            error
+        );
+
+    }
 }
 
     
@@ -991,128 +2442,1599 @@ function logout(){
 
 }
 
-function closeLogoutPopup(){
+function openLogoutPopup() {
 
     document
-    .getElementById("logoutPopup")
-    .classList.remove("show");
+        .getElementById("logoutOverlay")
+        .classList.add("active");
 
 }
 
-const API =
-"https://login-backend-1toz.onrender.com";
 
-function openProfilePopup(){
+function closeLogoutPopup() {
 
-document
-.getElementById("profilePopup")
-.classList.add("show");
+    document
+        .getElementById("logoutOverlay")
+        .classList.remove("active");
 
 }
 
-function closeProfilePopup(){
 
-document
-.getElementById("profilePopup")
-.classList.remove("show");
-
-}
-
-async function saveProfile(){
-
-const name =
-document
-.getElementById("profileName")
-.value
-.trim();
-
-const phone =
-document
-.getElementById("profilePhone")
-.value
-.trim();
-
-const email =
-localStorage.getItem("userEmail");
-
-if(name===""){
-
-showPopup(
-"Enter your name",
-"error"
-);
-
-return;
-
-}
-
-if(!/^[0-9]{10}$/.test(phone)){
-
-showPopup(
-"Enter valid phone number",
-"error"
-);
-
-return;
-
-}
-
-const res =
-await fetch(
-
-API+"/update-profile",
-
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
-
-body:JSON.stringify({
-
-email,
-
-name,
-
-phone
-
-})
-
-}
-
-);
-
-const data =
-await res.json();
-
-if(res.ok){
-
-showPopup(data.message);
-
-closeProfilePopup();
-
-}
-
-else{
-
-showPopup(data.message,"error");
-
-}
-
-}
-
-    
-function confirmLogout(){
+function confirmLogout() {
 
     localStorage.clear();
 
     window.location.replace("index.html");
 
 }
+
+
+
+function openProfilePopup() {
+
+    const email =
+        localStorage.getItem("userEmail");
+
+    if (!email) {
+
+        showPopup(
+            "Please login first.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // =================================================
+    // CLOSE ACCOUNT DROPDOWN
+    // =================================================
+
+    const dropdown =
+        document.querySelector(".dropdown");
+
+    if (dropdown) {
+        dropdown.classList.remove("show");
+    }
+
+
+    // =================================================
+    // HIDE DASHBOARD / MAIN CONTENT
+    // =================================================
+
+    document.body.classList.add(
+        "profile-is-open"
+    );
+
+
+    // =================================================
+    // SHOW PROFILE POPUP
+    // =================================================
+
+    const profileOverlay =
+        document.getElementById(
+            "profileOverlay"
+        );
+
+    if (profileOverlay) {
+
+        profileOverlay.classList.add(
+            "active"
+        );
+    }
+
+
+    // =================================================
+    // LOAD EXISTING PROFILE
+    // =================================================
+
+    loadProfile();
+
+}
+
+
+function closeProfilePopup() {
+
+    const profileOverlay =
+        document.getElementById(
+            "profileOverlay"
+        );
+
+
+    if (profileOverlay) {
+
+        profileOverlay.classList.remove(
+            "active"
+        );
+
+    }
+
+
+    // =================================================
+    // SHOW DASHBOARD / MAIN CONTENT AGAIN
+    // =================================================
+
+    document.body.classList.remove(
+        "profile-is-open"
+    );
+
+}
+
+// =====================================================
+// SAVE PROFILE
+// =====================================================
+
+async function saveProfile() {
+
+    const email =
+        localStorage.getItem("userEmail");
+
+
+    if (!email) {
+
+        showPopup(
+            "Please login first.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // =========================================
+    // GET USERNAME
+    // =========================================
+
+    const username =
+        document
+            .getElementById("profileUsername")
+            .value
+            .trim();
+
+
+    // =========================================
+    // GET PHONE
+    // =========================================
+
+    const phone =
+        document
+            .getElementById("profilePhone")
+            .value
+            .trim();
+
+
+    // =========================================
+    // GET GENDER
+    // =========================================
+
+    let gender = "";
+
+
+    if (
+        document.getElementById("genderMale").checked
+    ) {
+
+        gender = "Male";
+
+    }
+
+    else if (
+        document.getElementById("genderFemale").checked
+    ) {
+
+        gender = "Female";
+
+    }
+
+
+    // =========================================
+    // GET AGE
+    // =========================================
+
+    const age =
+        document
+            .getElementById("profileAge")
+            .value;
+
+
+    // =========================================
+    // GET STATE
+    // =========================================
+
+    const state =
+        document
+            .getElementById("profileState")
+            .value;
+
+
+    // =========================================
+    // SEND TO SERVER
+    // =========================================
+
+    try {
+
+        const response = await fetch(
+
+            `${API_URL}/update-profile`,
+
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type":
+                        "application/json"
+
+                },
+
+                body: JSON.stringify({
+
+                    email: email,
+
+                    username: username,
+
+                    phone: phone,
+
+                    gender: gender,
+
+                    age: age,
+
+                    state: state
+
+                })
+
+            }
+
+        );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            showPopup(
+                data.message ||
+                "Failed to update profile.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        // =========================================
+        // SUCCESS
+        // =========================================
+
+       // =================================================
+// PROFILE UPDATE SUCCESS
+// =================================================
+
+closeProfilePopup();
+
+
+// =================================================
+// SHOW DASHBOARD / MAIN CONTENT AGAIN
+// =================================================
+
+document.body.classList.remove(
+    "profile-is-open"
+);
+
+
+// =================================================
+// CHANGE MENU TEXT TO EDIT PROFILE
+// =================================================
+
+const profileMenuOption =
+    document.getElementById(
+        "profileMenuOption"
+    );
+
+if (profileMenuOption) {
+
+    profileMenuOption.innerHTML =
+        "✏️ Edit Profile";
+
+}
+
+
+// =================================================
+// SHOW SUCCESS MESSAGE
+// =================================================
+
+showPopup(
+    "Profile updated successfully!",
+    "success"
+);
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "SAVE PROFILE ERROR:",
+            error
+        );
+
+
+        showPopup(
+            "Unable to connect to server.",
+            "error"
+        );
+
+    }
+
+}
+
+// =====================================================
+// LOAD PROFILE
+// =====================================================
+
+async function loadProfile() {
+
+    const email =
+        localStorage.getItem("userEmail");
+
+
+    if (!email) {
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch(
+
+            `${API_URL}/profile?email=${encodeURIComponent(email)}`
+
+        );
+
+
+        const data = await response.json();
+
+
+        if (!response.ok) {
+
+            showPopup(
+                data.message ||
+                "Failed to load profile.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        // =========================================
+        // USERNAME
+        // =========================================
+
+        document.getElementById(
+            "profileUsername"
+        ).value =
+            data.username || "";
+
+
+        // =========================================
+        // PHONE
+        // =========================================
+
+        document.getElementById(
+            "profilePhone"
+        ).value =
+            data.phone || "";
+
+
+        // =========================================
+        // AGE
+        // =========================================
+
+        document.getElementById(
+            "profileAge"
+        ).value =
+            data.age || "";
+
+
+        // =========================================
+        // STATE
+        // =========================================
+
+        document.getElementById(
+            "profileState"
+        ).value =
+            data.state || "";
+
+
+        // =========================================
+        // GENDER
+        // =========================================
+
+        document.getElementById(
+            "genderMale"
+        ).checked =
+            data.gender === "Male";
+
+
+        document.getElementById(
+            "genderFemale"
+        ).checked =
+            data.gender === "Female";
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "LOAD PROFILE ERROR:",
+            error
+        );
+
+        showPopup(
+            "Unable to connect to server.",
+            "error"
+        );
+
+    }
+
+}
+
+    
+
+
+
+
+
+
+// =====================================================
+// PROFILE CLOSE BUTTON
+// =====================================================
+
+const profileCloseBtn =
+    document.getElementById("profileCloseBtn");
+
+if (profileCloseBtn) {
+
+    profileCloseBtn.addEventListener("click", function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeProfilePopup();
+
+    });
+
+}
+
+
+
+
+
+// =====================================================
+// DELETE ACCOUNT VARIABLES
+// =====================================================
+
+let deleteOtpTimerInterval = null;
+
+// =====================================================
+// DELETE ACCOUNT OTP INPUT VALIDATION
+// =====================================================
+
+// =====================================================
+// DELETE ACCOUNT OTP INPUT
+// =====================================================
+
+const deleteOtpInput =
+    document.getElementById(
+        "deleteAccountOtp"
+    );
+
+
+if (deleteOtpInput) {
+
+
+    // =================================================
+    // ONLY ALLOW NUMBERS
+    // =================================================
+
+    deleteOtpInput.addEventListener(
+        "input",
+        function () {
+
+            this.value =
+                this.value
+                    .replace(/\D/g, "")
+                    .slice(0, 6);
+
+        }
+    );
+
+
+    // =================================================
+    // PASTE 6 DIGIT OTP
+    // =================================================
+
+    deleteOtpInput.addEventListener(
+        "paste",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const pasted =
+                (
+                    event.clipboardData ||
+                    window.clipboardData
+                )
+                .getData("text")
+                .replace(/\D/g, "")
+                .slice(0, 6);
+
+
+            this.value =
+                pasted;
+
+
+            // Put cursor/focus back
+            this.focus();
+
+
+            // Automatically verify when 6 digits entered
+            if (pasted.length === 6) {
+
+                setTimeout(function () {
+
+                    verifyDeleteAccountOTP();
+
+                }, 150);
+
+            }
+
+        }
+    );
+
+
+    // =================================================
+    // AUTO FOCUS WHEN OTP POPUP IS CLICKED
+    // =================================================
+
+    document
+        .getElementById("deleteOtpOverlay")
+        .addEventListener(
+            "click",
+            function (event) {
+
+                /*
+                 * If user clicks empty popup area,
+                 * put focus back into OTP box.
+                 */
+
+                if (
+                    event.target === this
+                ) {
+
+                    deleteOtpInput.focus();
+
+                }
+
+            }
+        );
+
+}
+
+// =====================================================
+// GLOBAL OTP AUTO-TYPE SUPPORT
+// User can type OTP without clicking the OTP box
+// =====================================================
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        const otpOverlay =
+            document.getElementById(
+                "deleteOtpOverlay"
+            );
+
+
+        if (
+            !otpOverlay ||
+            !otpOverlay.classList.contains("active")
+        ) {
+
+            return;
+
+        }
+
+
+        const otpInput =
+            document.getElementById(
+                "deleteAccountOtp"
+            );
+
+
+        if (!otpInput) {
+            return;
+        }
+
+
+        // Ignore special keys
+        if (
+            event.ctrlKey ||
+            event.altKey ||
+            event.metaKey
+        ) {
+
+            return;
+
+        }
+
+
+        // =================================================
+        // NUMBER KEY
+        // =================================================
+
+        if (/^\d$/.test(event.key)) {
+
+            /*
+             * If another element has focus,
+             * move focus to OTP input.
+             */
+
+            if (
+                document.activeElement !==
+                otpInput
+            ) {
+
+                otpInput.focus();
+
+            }
+
+
+            /*
+             * Add the number to OTP.
+             */
+
+            if (
+                otpInput.value.length < 6
+            ) {
+
+                otpInput.value +=
+                    event.key;
+
+                event.preventDefault();
+
+
+                /*
+                 * Automatically verify
+                 * after 6 digits.
+                 */
+
+                if (
+                    otpInput.value.length === 6
+                ) {
+
+                    setTimeout(function () {
+
+                        verifyDeleteAccountOTP();
+
+                    }, 200);
+
+                }
+
+            }
+
+        }
+
+    }
+);
+
+
+// =====================================================
+// OPEN DELETE ACCOUNT CONFIRMATION
+// =====================================================
+
+function openDeleteAccountPopup() {
+
+    const email =
+        localStorage.getItem("userEmail");
+
+    if (!email) {
+
+        showPopup(
+            "Please login first.",
+            "error"
+        );
+
+        return;
+    }
+
+    document
+        .getElementById("deleteAccountOverlay")
+        .classList.add("active");
+
+}
+
+
+// =====================================================
+// CLOSE DELETE ACCOUNT CONFIRMATION
+// =====================================================
+
+function closeDeleteAccountPopup() {
+
+    document
+        .getElementById("deleteAccountOverlay")
+        .classList.remove("active");
+
+}
+
+
+// =====================================================
+// SEND DELETE ACCOUNT OTP
+// =====================================================
+
+async function sendDeleteAccountOTP() {
+
+    const email =
+        localStorage.getItem("userEmail");
+
+    if (!email) {
+
+        showPopup(
+            "Please login first.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const button =
+        document.querySelector(
+            ".delete-confirm-btn"
+        );
+
+    button.disabled = true;
+
+    button.innerText =
+        "Sending OTP...";
+
+
+    try {
+
+        const response =
+            await fetch(
+
+                `${API_URL}/send-delete-account-otp`,
+
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        email: email
+                    })
+                }
+
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            showPopup(
+                data.message ||
+                "Failed to send OTP.",
+                "error"
+            );
+
+            button.disabled = false;
+
+            button.innerText =
+                "Delete Account";
+
+            return;
+        }
+
+
+        // =================================================
+        // CLOSE DELETE CONFIRMATION
+        // =================================================
+
+        closeDeleteAccountPopup();
+
+
+        // =================================================
+        // HIDE MAIN PAGE
+        // =================================================
+
+        document.body.classList.add(
+            "delete-otp-is-open"
+        );
+
+
+        // =================================================
+        // SET EMAIL
+        // =================================================
+
+        const emailElement =
+            document.getElementById(
+                "deleteOtpEmail"
+            );
+
+        if (emailElement) {
+
+            emailElement.innerText =
+                email;
+        }
+
+
+        // =================================================
+        // SHOW OTP POPUP
+        // =================================================
+
+        const otpOverlay =
+            document.getElementById(
+                "deleteOtpOverlay"
+            );
+
+        if (otpOverlay) {
+
+            otpOverlay.classList.add(
+                "active"
+            );
+        }
+
+
+        // =================================================
+        // GET OTP INPUT
+        // =================================================
+
+        const otpInput =
+            document.getElementById(
+                "deleteAccountOtp"
+            );
+
+
+        if (otpInput) {
+
+            otpInput.value = "";
+
+            /*
+             * Wait until popup is visible,
+             * then automatically focus OTP.
+             */
+
+            setTimeout(function () {
+
+                otpInput.focus();
+
+                otpInput.select();
+
+            }, 150);
+
+        }
+
+
+        // =================================================
+        // START TIMER
+        // =================================================
+
+        startDeleteOtpTimer();
+
+
+        // =================================================
+        // SHOW SUCCESS MESSAGE
+        // =================================================
+
+        showPopup(
+            "OTP sent to your email. Enter it now.",
+            "success"
+        );
+
+
+        /*
+         * Popup message can temporarily take focus.
+         * Give OTP focus again after the message appears.
+         */
+
+        setTimeout(function () {
+
+            if (
+                otpInput &&
+                document
+                    .getElementById(
+                        "deleteOtpOverlay"
+                    )
+                    .classList.contains("active")
+            ) {
+
+                otpInput.focus();
+
+            }
+
+        }, 500);
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "SEND DELETE OTP ERROR:",
+            error
+        );
+
+
+        showPopup(
+            "Unable to connect to server.",
+            "error"
+        );
+
+    }
+
+
+    button.disabled = false;
+
+    button.innerText =
+        "Delete Account";
+
+}
+
+
+// =====================================================
+// CLOSE DELETE OTP POPUP
+// =====================================================
+
+function closedeleteOtpOverlay() {
+
+    const otpOverlay =
+        document.getElementById(
+            "deleteOtpOverlay"
+        );
+
+
+    if (otpOverlay) {
+
+        otpOverlay.classList.remove(
+            "active"
+        );
+
+    }
+
+
+    // =================================================
+    // SHOW MAIN PAGE AGAIN
+    // =================================================
+
+    document.body.classList.remove(
+        "delete-otp-is-open"
+    );
+
+
+    // =================================================
+    // STOP TIMER
+    // =================================================
+
+    clearInterval(
+        deleteOtpTimerInterval
+    );
+
+
+    // =================================================
+    // CLEAR OTP
+    // =================================================
+
+    const otpInput =
+        document.getElementById(
+            "deleteAccountOtp"
+        );
+
+    if (otpInput) {
+
+        otpInput.value = "";
+
+    }
+
+}
+
+
+// =====================================================
+// OTP TIMER
+// =====================================================
+
+function startDeleteOtpTimer() {
+
+    clearInterval(
+        deleteOtpTimerInterval
+    );
+
+
+    let seconds = 60;
+
+
+    const timer =
+        document.getElementById("deleteOtpTimer");
+
+    const resendButton =
+        document.getElementById(
+            "deleteAccountResendBtn"
+        );
+
+
+    resendButton.disabled = true;
+
+
+    deleteOtpTimerInterval =
+        setInterval(function() {
+
+            timer.innerText =
+                `Resend OTP in ${seconds}s`;
+
+
+            seconds--;
+
+
+            if (seconds < 0) {
+
+                clearInterval(
+                    deleteOtpTimerInterval
+                );
+
+                timer.innerText =
+                    "You can request a new OTP.";
+
+                resendButton.disabled =
+                    false;
+
+            }
+
+        }, 1000);
+
+}
+
+
+
+// =====================================================
+// VERIFY DELETE ACCOUNT OTP
+// =====================================================
+
+async function verifyDeleteAccountOTP() {
+
+    // =================================================
+    // GET CURRENT USER EMAIL
+    // =================================================
+
+    const currentUserEmail =
+        localStorage.getItem("userEmail") ||
+        localStorage.getItem("email");
+
+
+    // =================================================
+    // CHECK EMAIL
+    // =================================================
+
+    if (!currentUserEmail) {
+
+        showPopup(
+            "Your login session has expired. Please login again.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // =================================================
+    // GET OTP INPUT
+    // =================================================
+
+    const otpInput =
+        document.getElementById("deleteAccountOtp");
+
+
+    if (!otpInput) {
+
+        console.error(
+            "Delete account OTP input not found."
+        );
+
+        showPopup(
+            "OTP input was not found.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const otp =
+        otpInput.value.trim();
+
+
+    // =================================================
+    // CHECK OTP EMPTY
+    // =================================================
+
+    if (!otp) {
+
+        showPopup(
+            "Please enter the OTP.",
+            "error"
+        );
+
+        otpInput.focus();
+
+        return;
+    }
+
+
+    // =================================================
+    // CHECK OTP FORMAT
+    // =================================================
+
+    if (!/^\d{6}$/.test(otp)) {
+
+        showPopup(
+            "Please enter a valid 6-digit OTP.",
+            "error"
+        );
+
+        otpInput.focus();
+
+        return;
+    }
+
+
+    // =================================================
+    // GET VERIFY BUTTON
+    // =================================================
+
+    const button =
+        document.getElementById(
+            "verifyDeleteAccountOtpBtn"
+        );
+
+
+    if (!button) {
+
+        console.error(
+            "Verify Delete Account OTP button not found."
+        );
+
+        showPopup(
+            "Verification button was not found.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // =================================================
+    // DISABLE BUTTON
+    // =================================================
+
+    button.disabled = true;
+
+    button.textContent =
+        "Verifying...";
+
+
+    try {
+
+        // =================================================
+        // SEND OTP TO BACKEND
+        // =================================================
+
+        const response = await fetch(
+
+            `${BACKEND_URL}/verify-delete-account-otp`,
+
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    email: currentUserEmail,
+
+                    otp: otp
+
+                })
+            }
+
+        );
+
+
+        // =================================================
+        // READ SERVER RESPONSE
+        // =================================================
+
+        let data;
+
+
+        try {
+
+            data =
+                await response.json();
+
+        }
+
+        catch (jsonError) {
+
+            console.error(
+                "Could not read server JSON:",
+                jsonError
+            );
+
+            data = {
+
+                success: false,
+
+                message:
+                    "Unable to process the server response."
+            };
+        }
+
+
+        console.log(
+            "Delete account OTP response:",
+            data
+        );
+
+
+        // =================================================
+        // CHECK SUCCESS
+        // =================================================
+
+        const deleteSuccessful =
+            response.ok &&
+            (
+                data.success === true ||
+                data.status === "success"
+            );
+
+
+        // =================================================
+        // WRONG OTP / SERVER ERROR
+        // =================================================
+
+        if (!deleteSuccessful) {
+
+            console.error(
+                "Delete account OTP verification failed:",
+                data
+            );
+
+
+            showPopup(
+
+                data.message ||
+                "Incorrect OTP. Please try again.",
+
+                "error"
+            );
+
+
+            // ---------------------------------------------
+            // KEEP OTP POPUP OPEN
+            // ---------------------------------------------
+
+            const otpOverlay =
+                document.getElementById(
+                    "deleteOtpOverlay"
+                );
+
+
+            if (otpOverlay) {
+
+                otpOverlay.classList.add(
+                    "active"
+                );
+            }
+
+
+            // ---------------------------------------------
+            // CLEAR WRONG OTP
+            // ---------------------------------------------
+
+            otpInput.value = "";
+
+
+            // ---------------------------------------------
+            // FOCUS OTP INPUT
+            // ---------------------------------------------
+
+            setTimeout(function () {
+
+                otpInput.focus();
+
+            }, 100);
+
+
+            return;
+        }
+
+
+        // =================================================
+        // OTP VERIFIED
+        // ACCOUNT DELETED SUCCESSFULLY
+        // =================================================
+
+        console.log(
+            "OTP verified successfully."
+        );
+
+        console.log(
+            "Account and profile deleted successfully."
+        );
+
+
+        // =================================================
+        // STOP OTP TIMER
+        // =================================================
+
+        clearInterval(
+            deleteOtpTimerInterval
+        );
+
+
+        // =================================================
+        // CLOSE DELETE OTP OVERLAY
+        // =================================================
+
+        const otpOverlay =
+            document.getElementById(
+                "deleteOtpOverlay"
+            );
+
+
+        if (otpOverlay) {
+
+            otpOverlay.classList.remove(
+                "active"
+            );
+        }
+
+
+        // =================================================
+        // SHOW SUCCESS POPUP
+        //
+        // true = after OK:
+        // 1. Clear localStorage
+        // 2. Redirect to index.html
+        // =================================================
+
+        showPopup(
+
+            data.message ||
+            "Account and profile deleted successfully.",
+
+            "success",
+
+            true
+        );
+
+
+        return;
+
+    }
+
+
+    catch (error) {
+
+        // =================================================
+        // NETWORK / CONNECTION ERROR
+        // =================================================
+
+        console.error(
+            "Delete account OTP error:",
+            error
+        );
+
+
+        showPopup(
+
+            "Unable to connect to the server. Please try again.",
+
+            "error"
+        );
+
+
+        // =================================================
+        // KEEP OTP POPUP OPEN
+        // =================================================
+
+        const otpOverlay =
+            document.getElementById(
+                "deleteOtpOverlay"
+            );
+
+
+        if (otpOverlay) {
+
+            otpOverlay.classList.add(
+                "active"
+            );
+        }
+
+
+        otpInput.value = "";
+
+
+        setTimeout(function () {
+
+            otpInput.focus();
+
+        }, 100);
+
+    }
+
+
+    finally {
+
+        // =================================================
+        // RESTORE VERIFY BUTTON
+        // =================================================
+
+        button.disabled = false;
+
+        button.textContent =
+            "Verify & Delete Account";
+    }
+
+}
+
+
+
+
+
+
+// =====================================================
+// RESEND DELETE ACCOUNT OTP
+// =====================================================
+
+async function resendDeleteAccountOTP() {
+
+    const email =
+        localStorage.getItem("userEmail");
+
+
+    if (!email) {
+        return;
+    }
+
+
+    const button =
+        document.getElementById(
+            "deleteAccountResendBtn"
+        );
+
+
+    button.disabled = true;
+
+    button.innerText =
+        "Sending...";
+
+
+    try {
+
+        const response = await fetch(
+
+            `${API_URL}/resend-delete-account-otp`,
+
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type":
+                        "application/json"
+
+                },
+
+                body: JSON.stringify({
+
+                    email: email
+
+                })
+
+            }
+
+        );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            showPopup(
+                data.message ||
+                "Failed to resend OTP.",
+                "error"
+            );
+
+            button.disabled = false;
+
+            button.innerText =
+                "Resend OTP";
+
+            return;
+        }
+
+
+        const otpInput =
+    document.getElementById(
+        "deleteAccountOtp"
+    );
+
+
+if (otpInput) {
+
+    otpInput.value = "";
+
+    setTimeout(function () {
+
+        otpInput.focus();
+
+    }, 100);
+
+}
+
+
+        startDeleteOtpTimer();
+
+
+        showPopup(
+            "New OTP sent to your email.",
+            "success"
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "RESEND DELETE OTP ERROR:",
+            error
+        );
+
+
+        showPopup(
+            "Unable to connect to server.",
+            "error"
+        );
+
+
+        button.disabled = false;
+
+        button.innerText =
+            "Resend OTP";
+
+    }
+
+}
+
+
 
 </script>
 
