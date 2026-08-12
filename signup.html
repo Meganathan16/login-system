@@ -617,6 +617,19 @@ button:disabled {
 }
 
 
+.otp-box.error:focus {
+
+    border-color: #ef4444 !important;
+
+    box-shadow:
+        0 0 20px #ef4444 !important;
+
+    transform:
+        scale(1.05);
+
+}
+
+
 .otp-box.error {
 
     border-color: #ef4444;
@@ -1108,6 +1121,107 @@ button:disabled {
 
 }
 
+/* =====================================================
+   FORGOT PASSWORD
+===================================================== */
+
+.forgot-password {
+    text-align: right;
+    margin-top: -8px;
+    margin-bottom: 15px;
+    color: #4da6ff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.forgot-password:hover {
+    color: #80c4ff;
+    text-decoration: underline;
+}
+
+
+/* =====================================================
+   FORGOT PASSWORD OTP
+===================================================== */
+
+.forgot-password-container {
+    width: 100%;
+}
+
+
+/* =====================================================
+   RESET PASSWORD
+===================================================== */
+
+.password-match-message {
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.password-match-message.success {
+    color: #34d399;
+}
+
+.password-match-message.error {
+    color: #ef4444;
+}
+
+#forgot-password-form.hidden,
+#forgot-password-otp-form.hidden,
+#reset-password-form.hidden {
+    display: none !important;
+}
+
+#forgot-password-form:not(.hidden),
+#forgot-password-otp-form:not(.hidden),
+#reset-password-form:not(.hidden) {
+    display: block !important;
+}
+
+
+
+#forgot-password-form {
+    width: 100%;
+}
+
+#forgot-password-form h2 {
+    color: white;
+}
+
+#forgot-password-form label {
+    color: white;
+}
+
+#forgot-password-form input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+}
+
+#forgot-password-form button {
+    display: block;
+    width: 100%;
+}
+
+#forgot-password-form .toggle {
+    display: block;
+}
+
+
+/* =====================================================
+   CONFIRM PASSWORD EYE - FIX ONLY
+===================================================== */
+
+#confirm-password-toggle {
+    top: 37px !important;
+    transform: translateY(-50%);
+}
 
 </style>
 
@@ -1336,11 +1450,11 @@ Signup
 <div class="form-group">
 
 
-<label for="signup-username">Username</label>
+<label for="signup-userid">User ID</label>
 
 <input
     type="text"
-    id="signup-username"
+    id="signup-userid"
     required
 >
 
@@ -1644,7 +1758,7 @@ Login
 
 
 <label for="login-identifier">
-    Username or Email
+    User ID or Email
 </label>
 
 <input
@@ -1691,6 +1805,13 @@ Password
 
 </div>
 
+<div
+    class="forgot-password"
+    id="forgot-password">
+
+    Forgot password?
+
+</div>
 
 <button
 
@@ -1846,6 +1967,8 @@ Resend OTP
 </div>
 
 
+
+
 <!-- LOGIN SUCCESS -->
 
 <div
@@ -1910,6 +2033,248 @@ Redirecting...
 </div>
 
 
+
+
+
+
+
+<!-- =====================================================
+     FORGOT PASSWORD EMAIL
+===================================================== -->
+
+<div
+    id="forgot-password-form"
+    class="hidden">
+
+    <h2>
+        Forgot Password
+    </h2>
+
+    <p style="
+        color:#aaa;
+        text-align:center;
+        margin-bottom:20px;
+    ">
+
+        Enter your registered email address.
+
+    </p>
+
+
+    <form id="forgot-password-form-element">
+
+        <div class="form-group">
+
+            <label for="forgot-password-email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="forgot-password-email"
+                required
+                autocomplete="email">
+
+        </div>
+
+
+        <button type="submit">
+
+            Send OTP
+
+        </button>
+
+    </form>
+
+
+    <div
+        class="toggle"
+        id="forgot-back-login">
+
+        ← Back to Login
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FORGOT PASSWORD OTP
+===================================================== -->
+
+<div
+    id="forgot-password-otp-form"
+    class="hidden">
+
+    <div id="forgotPasswordOtpSection">
+
+        <h2>
+            Verify OTP
+        </h2>
+
+        <p style="
+            color:#aaa;
+            text-align:center;
+            margin-bottom:10px;
+        ">
+
+            Enter the 6-digit OTP sent to your email.
+
+        </p>
+
+
+        <form id="forgot-password-otp-form-element">
+
+            <div class="otp-container">
+
+                <input
+                    class="otp-box forgot-otp-box"
+                    maxlength="1"
+                    inputmode="numeric"
+                    autocomplete="one-time-code">
+
+                <input
+                    class="otp-box forgot-otp-box"
+                    maxlength="1"
+                    inputmode="numeric">
+
+                <input
+                    class="otp-box forgot-otp-box"
+                    maxlength="1"
+                    inputmode="numeric">
+
+                <input
+                    class="otp-box forgot-otp-box"
+                    maxlength="1"
+                    inputmode="numeric">
+
+                <input
+                    class="otp-box forgot-otp-box"
+                    maxlength="1"
+                    inputmode="numeric">
+
+                <input
+                    class="otp-box forgot-otp-box"
+                    maxlength="1"
+                    inputmode="numeric">
+
+            </div>
+
+
+            <button
+                type="button"
+                id="resend-forgot-password-otp"
+                style="
+                    margin-top:10px;
+                    background:#28a745;
+                ">
+
+                Resend OTP
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     RESET PASSWORD
+===================================================== -->
+
+<div
+    id="reset-password-form"
+    class="hidden">
+
+    <h2>
+        Reset Password
+    </h2>
+
+    <p style="
+        color:#aaa;
+        text-align:center;
+        margin-bottom:20px;
+    ">
+
+        Create your new password.
+
+    </p>
+
+
+    <form id="reset-password-form-element">
+
+
+        <div class="form-group">
+
+            <label for="new-password">
+                New Password
+            </label>
+
+            <input
+                type="password"
+                id="new-password"
+                required
+                autocomplete="new-password">
+
+            <span
+                class="toggle-password"
+                id="new-password-toggle">
+
+                👁
+
+            </span>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="confirm-password">
+                Confirm Password
+            </label>
+
+            <input
+                type="password"
+                id="confirm-password"
+                required
+                autocomplete="new-password">
+
+            <span
+                class="toggle-password"
+                id="confirm-password-toggle">
+
+                👁
+
+            </span>
+
+
+            <div
+                id="password-match-message"
+                class="password-match-message">
+
+            </div>
+
+        </div>
+
+
+        <button type="submit">
+
+            Change Password
+
+        </button>
+
+
+    </form>
+
+</div>
+
+
+
+
+
+
+
 </div>
 
 
@@ -1926,7 +2291,7 @@ Redirecting...
 
 <script>
 
-
+const API = "https://login-backend-1toz.onrender.com";
 /* =====================================================
    GSAP
 ===================================================== */
@@ -2230,6 +2595,34 @@ const loginOtpForm =
     document.getElementById(
         "login-otp-form"
     );
+	
+
+const forgotPasswordForm =
+    document.getElementById(
+        "forgot-password-form"
+    );
+
+const forgotPasswordOtpForm =
+    document.getElementById(
+        "forgot-password-otp-form"
+    );
+
+const resetPasswordForm =
+    document.getElementById(
+        "reset-password-form"
+    );
+
+const forgotPasswordLink =
+    document.getElementById(
+        "forgot-password"
+    );
+
+const forgotBackLogin =
+    document.getElementById(
+        "forgot-back-login"
+    );
+	
+	
 
 
 const showLogin =
@@ -2267,6 +2660,11 @@ let signupTimer = null;
 
 let loginTimer = null;
 
+let currentForgotPasswordEmail = "";
+
+let passwordResetToken = "";
+
+let forgotPasswordTimer = null;
 
 /* =====================================================
    POPUP
@@ -2658,89 +3056,968 @@ loginTogglePassword.addEventListener(
    VALIDATION
 ===================================================== */
 
-function isStrongPassword(
-
-    password
-
-) {
-
-
-    return /^(?=.*[A-Z])(?=.*\d).{8,}$/
-
-        .test(password);
-
-
+function isStrongPassword(password) {
+    return /^(?=.*[A-Z])(?=.*\d).{8,}$/.test(password);
 }
 
 
-function isValidUsername(username) {
-    return /^(?=.*\d)(?=.*[^A-Za-z0-9])[A-Za-z0-9._@#-]{3,30}$/.test(username);
+function isValidUserid(userid) {
+    return /^(?=.*\d)(?=.*[^A-Za-z0-9])[A-Za-z0-9._@#-]{3,30}$/.test(userid);
 }
 
       
 
-function isValidEmail(
-
-    email
-
-) {
-
-
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-        .test(email);
-
-
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 
 /* =====================================================
    SWITCH LOGIN / SIGNUP
+   FIXED - REMOVE OLD INLINE DISPLAY
 ===================================================== */
 
+function showLoginForm() {
+
+    // Hide everything
+    signupForm.classList.add("hidden");
+    signupOtpForm.classList.add("hidden");
+    loginOtpForm.classList.add("hidden");
+
+    forgotPasswordForm.classList.add("hidden");
+    forgotPasswordOtpForm.classList.add("hidden");
+    resetPasswordForm.classList.add("hidden");
+
+    // Remove old inline display settings
+    signupForm.style.display = "";
+    signupOtpForm.style.display = "";
+    loginOtpForm.style.display = "";
+
+    forgotPasswordForm.style.display = "";
+    forgotPasswordOtpForm.style.display = "";
+    resetPasswordForm.style.display = "";
+
+    // Show login
+    loginForm.classList.remove("hidden");
+
+    // VERY IMPORTANT
+    loginForm.style.display = "block";
+
+    // Make sure forms container is visible
+    document.querySelector(".forms-container").style.display = "block";
+}
+
+
+function showSignupForm() {
+
+    // Hide everything
+    loginForm.classList.add("hidden");
+    signupOtpForm.classList.add("hidden");
+    loginOtpForm.classList.add("hidden");
+
+    forgotPasswordForm.classList.add("hidden");
+    forgotPasswordOtpForm.classList.add("hidden");
+    resetPasswordForm.classList.add("hidden");
+
+    // Remove old inline display settings
+    loginForm.style.display = "";
+    signupOtpForm.style.display = "";
+    loginOtpForm.style.display = "";
+
+    forgotPasswordForm.style.display = "";
+    forgotPasswordOtpForm.style.display = "";
+    resetPasswordForm.style.display = "";
+
+    // Show signup
+    signupForm.classList.remove("hidden");
+
+    // VERY IMPORTANT
+    signupForm.style.display = "block";
+
+    // Make sure forms container is visible
+    document.querySelector(".forms-container").style.display = "block";
+}
+
+
 showLogin.addEventListener(
-
     "click",
-
-    () => {
-
-
-        signupForm
-            .classList
-            .add("hidden");
-
-
-        loginForm
-            .classList
-            .remove("hidden");
-
-
-    }
-
+    showLoginForm
 );
 
 
 showSignup.addEventListener(
-
     "click",
-
-    () => {
-
-
-        loginForm
-            .classList
-            .add("hidden");
+    showSignupForm
+);
 
 
-        signupForm
-            .classList
-            .remove("hidden");
 
+
+/* =====================================================
+   FORGOT PASSWORD NAVIGATION
+===================================================== */
+
+forgotPasswordLink.addEventListener("click", function () {
+
+    // Make sure the forms container is visible
+    document.querySelector(".forms-container").style.display = "block";
+
+    // Hide every other form
+    loginForm.style.display = "none";
+    signupForm.style.display = "none";
+    loginOtpForm.style.display = "none";
+    signupOtpForm.style.display = "none";
+    forgotPasswordOtpForm.style.display = "none";
+    resetPasswordForm.style.display = "none";
+
+    // SHOW FORGOT PASSWORD FORM
+    forgotPasswordForm.style.display = "block";
+
+    // Make sure hidden class cannot hide it
+    forgotPasswordForm.classList.remove("hidden");
+
+    // Clear email
+    document.getElementById("forgot-password-email").value = "";
+
+    // Focus email
+    setTimeout(() => {
+        document.getElementById("forgot-password-email").focus();
+    }, 100);
+
+});
+
+
+
+
+
+forgotBackLogin.addEventListener("click", function () {
+
+    showLoginForm();
+
+    // Clear forgot-password data
+    currentForgotPasswordEmail = "";
+    passwordResetToken = "";
+
+    // Clear login form
+    document
+        .getElementById("login-form-element")
+        .reset();
+
+    // Focus login
+    setTimeout(() => {
+        document
+            .getElementById("login-identifier")
+            .focus();
+    }, 100);
+
+});
+
+
+/* =====================================================
+   FORGOT PASSWORD - SEND OTP
+===================================================== */
+
+document
+    .getElementById(
+        "forgot-password-form-element"
+    )
+    .addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+            const btn =
+                event.target.querySelector(
+                    "button"
+                );
+
+            const email =
+                document
+                    .getElementById(
+                        "forgot-password-email"
+                    )
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (!isValidEmail(email)) {
+
+                showPopup(
+                    "Please enter a valid email.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (btn.disabled) {
+                return;
+            }
+
+
+            setLoading(
+                btn,
+                true,
+                "Sending OTP..."
+            );
+
+
+            try {
+
+                const res =
+                    await fetch(
+                        API +
+                        "/forgot-password",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    email
+                                })
+                        }
+                    );
+
+
+                const data =
+                    await res.json();
+
+
+                if (res.ok) {
+
+                    currentForgotPasswordEmail =
+                        email;
+
+
+                    showPopup(
+                        data.message,
+                        "success"
+                    );
+
+
+                    forgotPasswordForm
+                        .classList
+                        .add("hidden");
+
+
+                    forgotPasswordOtpForm
+                        .classList
+                        .remove("hidden");
+
+
+                    clearOtpBoxes(
+                        ".forgot-otp-box"
+                    );
+
+
+                    focusForgotPasswordOtp();
+
+
+                    if (forgotPasswordTimer) {
+
+                        clearInterval(
+                            forgotPasswordTimer
+                        );
+
+                    }
+
+
+                    forgotPasswordTimer =
+                        startResendTimer(
+                            "resend-forgot-password-otp"
+                        );
+
+                }
+
+                else {
+
+                    showPopup(
+                        data.message,
+                        "error"
+                    );
+
+                }
+
+
+            }
+
+            catch (error) {
+
+                showPopup(
+                    "Unable to send OTP: " +
+                    error.message,
+                    "error"
+                );
+
+            }
+
+
+            setLoading(
+                btn,
+                false
+            );
+
+        }
+    );
+	
+	
+	
+/* =====================================================
+   FORGOT PASSWORD OTP FOCUS
+===================================================== */
+
+function focusForgotPasswordOtp() {
+
+    setTimeout(() => {
+
+        const first =
+            document.querySelector(
+                ".forgot-otp-box"
+            );
+
+        if (first) {
+            first.focus();
+        }
+
+    }, 200);
+
+}
+
+
+/* =====================================================
+   VERIFY FORGOT PASSWORD OTP
+===================================================== */
+
+async function verifyForgotPasswordOtp(otp) {
+
+    const boxes =
+        document.querySelectorAll(
+            ".forgot-otp-box"
+        );
+
+
+    boxes.forEach(box => {
+    box.classList.remove("error");
+    box.classList.add("verifying");
+});
+
+
+    try {
+
+        const res =
+            await fetch(
+                API +
+                "/verify-forgot-password-otp",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            email:
+                                currentForgotPasswordEmail,
+
+                            otp
+
+                        })
+
+                }
+            );
+
+
+        const data =
+            await res.json();
+
+
+        if (res.ok) {
+
+            showPopup(
+                data.message,
+                "success"
+            );
+
+
+            if (forgotPasswordTimer) {
+
+                clearInterval(
+                    forgotPasswordTimer
+                );
+
+            }
+
+
+            passwordResetToken =
+                data.resetToken;
+
+
+            setTimeout(() => {
+
+                forgotPasswordOtpForm
+                    .classList
+                    .add("hidden");
+
+                resetPasswordForm
+                    .classList
+                    .remove("hidden");
+
+
+                document
+                    .getElementById(
+                        "new-password"
+                    )
+                    .focus();
+
+            }, 700);
+
+        }
+
+        else {
+
+            boxes.forEach(box => {
+    box.classList.remove("verifying");
+    box.classList.add("error");
+});
+
+
+            showPopup(
+                data.message,
+                "error"
+            );
+
+        }
 
     }
 
+    catch (error) {
+
+        boxes.forEach(
+            box => {
+
+                box.classList
+                    .remove(
+                        "verifying"
+                    );
+
+            }
+        );
+
+
+        showPopup(
+            "Unable to verify OTP: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RESEND FORGOT PASSWORD OTP
+===================================================== */
+
+document
+    .getElementById(
+        "resend-forgot-password-otp"
+    )
+    .addEventListener(
+        "click",
+        async event => {
+
+            const btn =
+                event.target;
+
+
+            if (btn.disabled) {
+                return;
+            }
+
+
+            if (!currentForgotPasswordEmail) {
+
+                showPopup(
+                    "Please enter your email again.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            setLoading(
+                btn,
+                true,
+                "Sending..."
+            );
+
+
+            try {
+
+                const res =
+                    await fetch(
+                        API +
+                        "/resend-forgot-password-otp",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    email:
+                                        currentForgotPasswordEmail
+
+                                })
+
+                        }
+                    );
+
+
+                const data =
+                    await res.json();
+
+
+                if (res.ok) {
+
+                    showPopup(
+                        data.message,
+                        "success"
+                    );
+
+
+                    clearOtpBoxes(
+                        ".forgot-otp-box"
+                    );
+
+
+                    focusForgotPasswordOtp();
+
+
+                    if (forgotPasswordTimer) {
+
+                        clearInterval(
+                            forgotPasswordTimer
+                        );
+
+                    }
+
+
+                    forgotPasswordTimer =
+                        startResendTimer(
+                            "resend-forgot-password-otp"
+                        );
+
+                }
+
+                else {
+
+                    showPopup(
+                        data.message,
+                        "error"
+                    );
+
+                }
+
+            }
+
+            catch (error) {
+
+                showPopup(
+                    "Unable to resend OTP: " +
+                    error.message,
+                    "error"
+                );
+
+            }
+
+
+            setLoading(
+                btn,
+                false
+            );
+
+        }
+    );
+	
+	
+	
+/* =====================================================
+   RESET PASSWORD VISIBILITY
+===================================================== */
+
+document
+    .getElementById(
+        "new-password-toggle"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            togglePasswordVisibility(
+
+                document.getElementById(
+                    "new-password"
+                ),
+
+                document.getElementById(
+                    "new-password-toggle"
+                )
+
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "confirm-password-toggle"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            togglePasswordVisibility(
+
+                document.getElementById(
+                    "confirm-password"
+                ),
+
+                document.getElementById(
+                    "confirm-password-toggle"
+                )
+
+            );
+
+        }
+    );
+	
+	
+	
+/* =====================================================
+   PASSWORD MATCH CHECK
+===================================================== */
+
+const newPasswordInput =
+    document.getElementById(
+        "new-password"
+    );
+
+const confirmPasswordInput =
+    document.getElementById(
+        "confirm-password"
+    );
+
+const passwordMatchMessage =
+    document.getElementById(
+        "password-match-message"
+    );
+
+
+function checkPasswordMatch() {
+
+    const password =
+        newPasswordInput.value;
+
+    const confirmPassword =
+        confirmPasswordInput.value;
+
+
+    if (!confirmPassword) {
+
+        passwordMatchMessage.textContent =
+            "";
+
+        passwordMatchMessage.className =
+            "password-match-message";
+
+        return false;
+
+    }
+
+
+    if (password === confirmPassword) {
+
+        passwordMatchMessage.textContent =
+            "✓ Passwords match";
+
+        passwordMatchMessage.className =
+            "password-match-message success";
+
+        return true;
+
+    }
+
+
+    passwordMatchMessage.textContent =
+        "✕ Passwords do not match";
+
+    passwordMatchMessage.className =
+        "password-match-message error";
+
+    return false;
+
+}
+
+
+newPasswordInput.addEventListener(
+    "input",
+    checkPasswordMatch
 );
 
+confirmPasswordInput.addEventListener(
+    "input",
+    checkPasswordMatch
+);
+
+
+/* =====================================================
+   RESET PASSWORD
+===================================================== */
+
+document
+    .getElementById(
+        "reset-password-form-element"
+    )
+    .addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            const btn =
+                event.target.querySelector(
+                    "button"
+                );
+
+
+            const newPassword =
+                newPasswordInput.value;
+
+            const confirmPassword =
+                confirmPasswordInput.value;
+
+
+            if (!passwordResetToken) {
+
+                showPopup(
+                    "Password reset session expired. Please try again.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !isStrongPassword(
+                    newPassword
+                )
+            ) {
+
+                showPopup(
+                    "Password must contain 8+ characters, 1 uppercase letter and 1 number.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Exact comparison.
+             * Uppercase/lowercase/symbols matter.
+             */
+
+            if (
+                newPassword !==
+                confirmPassword
+            ) {
+
+                showPopup(
+                    "Passwords do not match exactly.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (btn.disabled) {
+                return;
+            }
+
+
+            setLoading(
+                btn,
+                true,
+                "Changing Password..."
+            );
+
+
+            try {
+
+                const res =
+                    await fetch(
+                        API +
+                        "/reset-password",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    email:
+                                        currentForgotPasswordEmail,
+
+                                    resetToken:
+                                        passwordResetToken,
+
+                                    newPassword
+
+                                })
+
+                        }
+                    );
+
+
+                const data =
+                    await res.json();
+
+
+                if (res.ok) {
+
+    showPopup(
+        data.message,
+        "success"
+    );
+
+    setTimeout(() => {
+
+    // Hide reset password
+    resetPasswordForm.classList.add("hidden");
+    resetPasswordForm.style.display = "none";
+
+    // Hide all other forms
+    signupForm.classList.add("hidden");
+    signupForm.style.display = "none";
+
+    signupOtpForm.classList.add("hidden");
+    signupOtpForm.style.display = "none";
+
+    forgotPasswordForm.classList.add("hidden");
+    forgotPasswordForm.style.display = "none";
+
+    forgotPasswordOtpForm.classList.add("hidden");
+    forgotPasswordOtpForm.style.display = "none";
+
+    // IMPORTANT:
+    // Reset login OTP sections
+    loginOtpForm.classList.add("hidden");
+    loginOtpForm.style.display = "none";
+
+    document
+        .getElementById("loginOtpSection")
+        .style.display = "block";
+
+    document
+        .getElementById("loginSuccessBox")
+        .style.display = "none";
+
+    // Show normal LOGIN form
+    loginForm.classList.remove("hidden");
+    loginForm.style.display = "block";
+
+    // Make forms container visible
+    document.querySelector(".forms-container").style.display = "block";
+
+    // Clear reset data
+    document
+        .getElementById("reset-password-form-element")
+        .reset();
+
+    passwordMatchMessage.textContent = "";
+    passwordMatchMessage.className =
+        "password-match-message";
+
+    currentForgotPasswordEmail = "";
+    passwordResetToken = "";
+
+    // Clear login fields
+    document
+        .getElementById("login-form-element")
+        .reset();
+
+    // Focus login
+    document
+        .getElementById("login-identifier")
+        .focus();
+
+}, 1800);
+
+}
+
+                else {
+
+                    showPopup(
+                        data.message,
+                        "error"
+                    );
+
+                }
+
+            }
+
+            catch (error) {
+
+                showPopup(
+                    "Unable to change password: " +
+                    error.message,
+                    "error"
+                );
+
+            }
+
+
+            setLoading(
+                btn,
+                false
+            );
+
+        }
+    );
+	
+	
 
 /* =====================================================
    CLEAR OTP BOXES
@@ -2807,18 +4084,12 @@ function setupOtpBoxes(
 
 
             input.addEventListener(
+    "input",
+    () => {
 
-                "input",
-
-                () => {
-
-
-                    input.value =
-                        input.value
-                        .replace(
-                            /\D/g,
-                            ""
-                        );
+        input.value =
+            input.value
+            .replace(/\D/g, "");
 
 
                     if(
@@ -2886,59 +4157,27 @@ function setupOtpBoxes(
                 event => {
 
 
-                    if(
+        if (event.key === "Backspace") {
 
-                        event.key ===
-                        "Backspace"
+    // Clear OTP error ONLY when user starts
+    // manually correcting the OTP.
+    inputs.forEach(box => {
+        box.classList.remove("error");
+        box.classList.remove("verifying");
+    });
 
-                    ) {
+    if (
+        input.value === "" &&
+        index > 0
+    ) {
 
+        inputs[index - 1].focus();
 
-                        inputs
-                            .forEach(
-                                box => {
+        inputs[index - 1].value = "";
 
+    }
 
-                                    box.classList
-                                        .remove(
-                                            "error"
-                                        );
-
-
-                                    box.classList
-                                        .remove(
-                                            "verifying"
-                                        );
-
-
-                                }
-
-                            );
-
-
-                        if(
-
-                            input.value === "" &&
-                            index > 0
-
-                        ) {
-
-
-                            inputs[
-                                index - 1
-                            ].focus();
-
-
-                            inputs[
-                                index - 1
-                            ].value =
-                                "";
-
-
-                        }
-
-
-                    }
+}
 
 
                     if(
@@ -3213,26 +4452,10 @@ async function verifySignupOtp(
         );
 
 
-    boxes.forEach(
-
-        (box, index) => {
-
-
-            setTimeout(() => {
-
-
-                box.classList
-                    .add(
-                        "verifying"
-                    );
-
-
-            }, index * 120);
-
-
-        }
-
-    );
+    boxes.forEach(box => {
+    box.classList.remove("error");
+    box.classList.add("verifying");
+});
 
 
     try {
@@ -3241,7 +4464,7 @@ async function verifySignupOtp(
         const res =
             await fetch(
 
-                "https://login-backend-1toz.onrender.com/verify-signup-otp",
+                API + "/verify-signup-otp",
 
                 {
 
@@ -3375,10 +4598,10 @@ async function verifySignupOtp(
 
 
                 document
-                    .getElementById(
-                        "login-email"
-                    )
-                    .focus();
+    .getElementById(
+        "login-identifier"
+    )
+    .focus();
 
 
             }, 3900);
@@ -3389,26 +4612,11 @@ async function verifySignupOtp(
         else {
 
 
-            boxes.forEach(
+            boxes.forEach(box => {
+    box.classList.remove("verifying");
+    box.classList.add("error");
+});
 
-                box => {
-
-
-                    box.classList
-                        .remove(
-                            "verifying"
-                        );
-
-
-                    box.classList
-                        .add(
-                            "error"
-                        );
-
-
-                }
-
-            );
 
 
             showPopup(
@@ -3477,26 +4685,10 @@ async function verifyLoginOtp(
         );
 
 
-    boxes.forEach(
-
-        (box, index) => {
-
-
-            setTimeout(() => {
-
-
-                box.classList
-                    .add(
-                        "verifying"
-                    );
-
-
-            }, index * 120);
-
-
-        }
-
-    );
+    boxes.forEach(box => {
+    box.classList.remove("error");
+    box.classList.add("verifying");
+});
 
 
     try {
@@ -3505,7 +4697,7 @@ async function verifyLoginOtp(
         const res =
             await fetch(
 
-                "https://login-backend-1toz.onrender.com/verify-login-otp",
+              API +   "/verify-login-otp",
 
                 {
 
@@ -3633,26 +4825,10 @@ async function verifyLoginOtp(
         else {
 
 
-            boxes.forEach(
-
-                box => {
-
-
-                    box.classList
-                        .remove(
-                            "verifying"
-                        );
-
-
-                    box.classList
-                        .add(
-                            "error"
-                        );
-
-
-                }
-
-            );
+            boxes.forEach(box => {
+    box.classList.remove("verifying");
+    box.classList.add("error");
+});
 
 
             showPopup(
@@ -3726,6 +4902,12 @@ setupOtpBoxes(
 );
 
 
+setupOtpBoxes(
+    ".forgot-otp-box",
+    verifyForgotPasswordOtp
+);
+
+
 /* =====================================================
    SIGNUP
 ===================================================== */
@@ -3758,11 +4940,11 @@ document
             }
 
 
-            const username =
-document
-.getElementById("signup-username")
-.value
-.trim();
+            const userid =
+    document
+    .getElementById("signup-userid")
+    .value
+    .trim();
 
 
             const email =
@@ -3782,12 +4964,12 @@ document
                 .value;
 
 
-              if (!isValidUsername(username)) {
+              if (!isValidUserid(userid)) {
 
     showPopup(
-        "Username must contain at least one number and one special character.",
-        "error"
-    );
+    "User ID must contain at least one number and one special character.",
+    "error"
+);
 
     return;
 }
@@ -3852,7 +5034,7 @@ document
                 const res =
                     await fetch(
 
-                        "https://login-backend-1toz.onrender.com/signup",
+                      API +   "/signup",
 
                         {
 
@@ -3873,7 +5055,7 @@ document
 
                                     {
 
-                                        username,
+                                        userid,
 
                                         email,
 
@@ -4041,7 +5223,7 @@ document
                 const res =
                     await fetch(
 
-                        "https://login-backend-1toz.onrender.com/resend-signup-otp",
+                      API +   "/resend-signup-otp",
 
                         {
 
@@ -4219,7 +5401,7 @@ document
 ) {
 
     showPopup(
-        "Please enter your username or email.",
+        "Please enter your user ID or email.",
         "error"
     );
 
@@ -4262,7 +5444,7 @@ document
                 const res =
                     await fetch(
 
-                        "https://login-backend-1toz.onrender.com/login",
+                      API +   "/login",
 
                         {
 
@@ -4302,63 +5484,59 @@ document
 
                 if(res.ok) {
 
+    currentLoginEmail =
+        data.email;
 
-                    currentLoginEmail =
-                        data.email;
+    showPopup(
+        data.message,
+        "success"
+    );
 
+    setTimeout(() => {
 
-                    showPopup(
+        // Hide normal login form
+        loginForm.classList.add("hidden");
+        loginForm.style.display = "none";
 
-                        data.message,
+        // SHOW LOGIN OTP FORM
+        loginOtpForm.classList.remove("hidden");
 
-                        "success"
+        // VERY IMPORTANT
+        // Reset the display:none added after password reset
+        loginOtpForm.style.display = "block";
 
-                    );
+        // Make sure OTP section itself is visible
+        document
+            .getElementById("loginOtpSection")
+            .style.display = "block";
 
+        // Hide previous login success screen
+        document
+            .getElementById("loginSuccessBox")
+            .style.display = "none";
 
-                    setTimeout(() => {
+        // Clear old OTP
+        clearOtpBoxes(".login-otp-box");
 
+        // Focus first OTP box
+        focusLoginOtp();
 
-                        loginForm
-                            .classList
-                            .add(
-                                "hidden"
-                            );
+        if(loginTimer) {
 
+            clearInterval(
+                loginTimer
+            );
 
-                        loginOtpForm
-                            .classList
-                            .remove(
-                                "hidden"
-                            );
+        }
 
+        loginTimer =
+            startResendTimer(
+                "resend-login-otp"
+            );
 
-                        focusLoginOtp();
+    }, 1000);
 
-
-                        if(loginTimer) {
-
-
-                            clearInterval(
-                                loginTimer
-                            );
-
-
-                        }
-
-
-                        loginTimer =
-                            startResendTimer(
-
-                                "resend-login-otp"
-
-                            );
-
-
-                    }, 1000);
-
-
-                }
+}
 
                 else {
 
@@ -4449,7 +5627,7 @@ document
                 const res =
                     await fetch(
 
-                        "https://login-backend-1toz.onrender.com/resend-login-otp",
+                      API +   "/resend-login-otp",
 
                         {
 
